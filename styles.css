@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #fff;
@@ -42,7 +42,10 @@ body {
     text-decoration: none;
     color: #666;
     font-weight: 500;
+    transition: color 0.3s ease;
 }
+
+.nav-links a:hover { color: #000; }
 
 /* --- Hero Section --- */
 .page-hero {
@@ -54,7 +57,7 @@ body {
     font-size: 3rem;
 }
 
-/* --- Moving Logos Section (Marquee) --- */
+/* --- Improved Moving Logos Section --- */
 .clients-section {
     padding: 60px 0;
     background: #ffffff;
@@ -71,14 +74,21 @@ body {
     width: 100%;
     overflow: hidden;
     position: relative;
-    /* Optional: creates a fade effect at edges */
+    /* Smooth fade on both ends */
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .logo-track {
     display: flex;
     width: max-content;
+    /* Added "running" state to allow pausing */
     animation: scrollMarquee 30s linear infinite;
+}
+
+/* Pause animation on hover */
+.logo-marquee:hover .logo-track {
+    animation-play-state: paused;
 }
 
 .logo-group {
@@ -99,6 +109,13 @@ body {
     font-weight: 600;
     flex-shrink: 0;
     white-space: nowrap;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Subtle hover lift effect */
+.logo-card:hover {
+    transform: translateY(-5px);
+    background-color: #f1f5f9;
 }
 
 @keyframes scrollMarquee {
