@@ -1,13 +1,60 @@
 // ============ COSTA BRAVA — shared behaviors ============
 
-/* Theme: persisted light/dark */
-(function initTheme(){
-  const saved = localStorage.getItem('cb-theme');
-  const theme = saved || 'light';
+/* Theme and Language Initialization */
+(function initPersistedState(){
+  // Theme
+  const savedTheme = localStorage.getItem('cb-theme');
+  const theme = savedTheme || 'light';
   document.documentElement.setAttribute('data-theme', theme);
+
+  // Language
+  const savedLang = localStorage.getItem('cb-lang');
+  const lang = savedLang || 'en';
+  document.documentElement.setAttribute('lang', lang);
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---- Language Switcher ---- */
+const langSwitcher = document.querySelector('.lang-switcher');
+const langBtnText = document.querySelector('.current-lang');
+const langOptions = document.querySelectorAll('.lang-dropdown button');
+
+const updateLangUI = (lang) => {
+  if (langBtnText) langBtnText.textContent = lang === 'en' ? 'EN' : 'RU';
+
+  document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+    el.placeholder = el.getAttribute(`data-placeholder-${lang}`);
+  });
+};
+
+const currentLang = document.documentElement.getAttribute('lang');
+updateLangUI(currentLang);
+
+if (langSwitcher) {
+  langSwitcher.addEventListener('click', () => {
+    langSwitcher.classList.toggle('open');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!langSwitcher.contains(e.target)) {
+      langSwitcher.classList.remove('open');
+    }
+  });
+
+  langOptions.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const selectedLang = btn.dataset.lang;
+
+      localStorage.setItem('cb-lang', selectedLang);
+      document.documentElement.setAttribute('lang', selectedLang);
+      updateLangUI(selectedLang);
+
+      langSwitcher.classList.remove('open');
+    });
+  });
+}
 
   /* ---- Theme toggle ---- */
   const themeBtn = document.querySelector('.theme-toggle');
