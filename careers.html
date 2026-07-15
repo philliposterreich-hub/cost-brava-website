@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Карьера — Costa Brava</title>
+<title>Careers — Costa Brava</title>
+<meta name="description" content="Costa Brava Vacancies: MEP engineers, site managers, electricians, HVAC specialists. Join our team.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,80 +16,220 @@
   <div class="container">
     <a href="index.html" class="brand"><span class="brand-mark">CB</span>COSTA BRAVA</a>
     <nav class="nav-links">
-      <a href="index.html" data-i18n="nav_home">Главная</a>
-      <a href="about.html" data-i18n="nav_about">О компании</a>
-      <a href="services.html" data-i18n="nav_services">Услуги</a>
-      <a href="clients.html" data-i18n="nav_clients">Клиенты</a>
-      <a href="careers.html" class="active" data-i18n="nav_careers">Карьера</a>
-      <a href="contact.html" data-i18n="nav_contact">Контакты</a>
+      <a href="index.html"><span class="en-text">Home</span><span class="ru-text">Главная</span></a>
+      <a href="about.html"><span class="en-text">About</span><span class="ru-text">О компании</span></a>
+      <a href="services.html"><span class="en-text">Services</span><span class="ru-text">Услуги</span></a>
+      <a href="clients.html"><span class="en-text">Clients</span><span class="ru-text">Клиенты</span></a>
+      <a href="careers.html" class="active"><span class="en-text">Careers</span><span class="ru-text">Карьера</span></a>
+      <a href="contact.html"><span class="en-text">Contact</span><span class="ru-text">Контакты</span></a>
     </nav>
     <div class="header-actions">
-      
+      <!-- FIXED LANGUAGE SWITCHER MATCHING SCRIPT.JS -->
       <div class="lang-switcher">
-        <button class="lang-toggle-btn">
-          <span id="current-lang-display">EN</span> ▼
+        <button class="lang-btn" aria-label="Switch language">
+          <span class="current-lang">EN</span> ▼
         </button>
         <div class="lang-dropdown">
-          <button data-lang-switch="en">English</button>
-          <button data-lang-switch="ru">Русский</button>
+          <button data-lang="en">English</button>
+          <button data-lang="ru">Русский</button>
         </div>
       </div>
 
-      <button class="theme-toggle" aria-label="Переключить тему">
+      <button class="theme-toggle" aria-label="Toggle theme">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </button>
-      <a href="contact.html" class="btn btn-primary" style="padding:12px 22px;" data-i18n="btn_quote">КП</a>
-      <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      <a href="contact.html" class="btn btn-primary" style="padding:12px 22px;">
+        <span class="en-text">Get Quote</span><span class="ru-text">КП</span>
+      </a>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <div class="mobile-nav">
-  <a href="index.html" data-i18n="nav_home">Главная</a>
-  <a href="about.html" data-i18n="nav_about">О компании</a>
-  <a href="services.html" data-i18n="nav_services">Услуги</a>
-  <a href="clients.html" data-i18n="nav_clients">Клиенты</a>
-  <a href="careers.html" class="active" data-i18n="nav_careers">Карьера</a>
-  <a href="contact.html" data-i18n="nav_contact">Контакты</a>
+  <a href="index.html"><span class="en-text">Home</span><span class="ru-text">Главная</span></a>
+  <a href="about.html"><span class="en-text">About</span><span class="ru-text">О компании</span></a>
+  <a href="services.html"><span class="en-text">Services</span><span class="ru-text">Услуги</span></a>
+  <a href="clients.html"><span class="en-text">Clients</span><span class="ru-text">Клиенты</span></a>
+  <a href="careers.html" class="active"><span class="en-text">Careers</span><span class="ru-text">Карьера</span></a>
+  <a href="contact.html"><span class="en-text">Contact</span><span class="ru-text">Контакты</span></a>
 </div>
 
 <section class="page-hero">
-  <div class="hero-media"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1800&q=75" alt="Команда Costa Brava"></div>
+  <div class="hero-media"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1800&q=75" alt="Costa Brava Team"></div>
   <div class="container">
-    <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">Главная</a> / <span data-i18n="nav_careers">Карьера</span></div>
-    <div class="eyebrow" data-i18n="nav_careers">Карьера</div>
-    <h1 data-i18n="careers_title">Стройте будущее вместе с нами</h1>
-    <p class="lead" style="color:rgba(255,255,255,0.82);" data-i18n="careers_sub">Мы растим команду инженеров и строителей, которые задают стандарты качества в Узбекистане.</p>
+    <div class="breadcrumb">
+      <a href="index.html"><span class="en-text">Home</span><span class="ru-text">Главная</span></a> / 
+      <span class="en-text">Careers</span><span class="ru-text">Карьера</span>
+    </div>
+    <div class="eyebrow"><span class="en-text">Careers</span><span class="ru-text">Карьера</span></div>
+    <h1>
+      <span class="en-text">Build the Future with Us</span>
+      <span class="ru-text">Стройте будущее вместе с нами</span>
+    </h1>
+    <p class="lead" style="color:rgba(255,255,255,0.82);">
+      <span class="en-text">We are growing a team of engineers and builders setting quality standards in Uzbekistan.</span>
+      <span class="ru-text">Мы растим команду инженеров и строителей, которые задают стандарты качества в Узбекистане.</span>
+    </p>
   </div>
 </section>
 
+<!-- COMBINED & TRANSLATED SERVICE GRID -->
 <section class="section-alt">
   <div class="container">
     <div class="grid-2">
         <div>
-            <h3 data-i18n="service_construction" style="color: var(--orange);">Строительство</h3>
+            <h3 style="color: var(--orange);">
+              <span class="en-text">Construction</span><span class="ru-text">Строительство</span>
+            </h3>
             <ul>
-                <li data-i18n="service_civil">Гражданское строительство</li>
-                <li data-i18n="service_renovation">Реконструкция и отделка</li>
-                <li data-i18n="service_roofing">Кровельные и гидроизоляционные работы</li>
-                <li data-i18n="service_flooring">Эпоксидные и промышленные полы</li>
+                <li><span class="en-text">Civil Construction</span><span class="ru-text">Гражданское строительство</span></li>
+                <li><span class="en-text">Building Renovation & Fit-Out</span><span class="ru-text">Реконструкция и отделка</span></li>
+                <li><span class="en-text">Roofing & Waterproofing</span><span class="ru-text">Кровельные и гидроизоляционные работы</span></li>
+                <li><span class="en-text">Epoxy & Industrial Flooring</span><span class="ru-text">Эпоксидные и промышленные полы</span></li>
             </ul>
         </div>
         <div>
-            <h3 data-i18n="service_mep" style="color: var(--orange);">Инженерные системы (MEP)</h3>
+            <h3 style="color: var(--orange);">
+              <span class="en-text">Engineering Systems (MEP)</span><span class="ru-text">Инженерные системы (MEP)</span>
+            </h3>
             <ul>
-                <li data-i18n="service_hvac">Системы ОВК</li>
-                <li data-i18n="service_electrical">Электромонтажные работы</li>
-                <li data-i18n="service_plumbing">Водоснабжение и канализация</li>
-                <li data-i18n="service_fire">Системы пожаротушения</li>
-                <li data-i18n="service_low_current">Слаботочные системы</li>
-                <li data-i18n="service_maintenance">Техническое обслуживание</li>
+                <li><span class="en-text">HVAC Systems</span><span class="ru-text">Системы ОВК</span></li>
+                <li><span class="en-text">Electrical Works</span><span class="ru-text">Электромонтажные работы</span></li>
+                <li><span class="en-text">Plumbing & Drainage</span><span class="ru-text">Водоснабжение и канализация</span></li>
+                <li><span class="en-text">Fire Fighting Systems</span><span class="ru-text">Системы пожаротушения</span></li>
+                <li><span class="en-text">Low Current Systems</span><span class="ru-text">Слаботочные системы</span></li>
+                <li><span class="en-text">Facility Maintenance</span><span class="ru-text">Техническое обслуживание</span></li>
             </ul>
         </div>
     </div>
   </div>
 </section>
+
+<section>
+  <div class="container">
+    <div class="grid-2 reveal">
+      <div>
+        <div class="eyebrow"><span class="en-text">Why Costa Brava</span><span class="ru-text">Почему Costa Brava</span></div>
+        <h2><span class="en-text">A Company Where Engineers Grow</span><span class="ru-text">Компания, где инженеры растут</span></h2>
+        <p class="en-text">We tackle complex industrial and commercial facilities where precision, responsibility, and professional growth matter. Our team consists of engineers, foremen, and specialists who value stability and real challenges.</p>
+        <p class="ru-text">Мы работаем над сложными промышленными и коммерческими объектами, где важны точность, ответственность и профессиональный рост. Наша команда — это инженеры, прорабы и специалисты, которые ценят стабильность и реальные задачи.</p>
+      </div>
+      <div class="adv-list" style="grid-template-columns:1fr;">
+        <div class="adv-item"><span class="num">01</span><div><h4><span class="en-text">Official Employment</span><span class="ru-text">Официальное трудоустройство</span></h4><p><span class="en-text">Transparent working conditions and timely payroll.</span><span class="ru-text">Прозрачные условия работы и своевременная оплата труда.</span></p></div></div>
+        <div class="adv-item"><span class="num">02</span><div><h4><span class="en-text">Training & Development</span><span class="ru-text">Обучение и развитие</span></h4><p><span class="en-text">Experience with international standards and modern equipment.</span><span class="ru-text">Работа с международными стандартами и современным оборудованием.</span></p></div></div>
+        <div class="adv-item"><span class="num">03</span><div><h4><span class="en-text">Major Facilities</span><span class="ru-text">Крупные объекты</span></h4><p><span class="en-text">Participation in the country's significant industrial and commercial projects.</span><span class="ru-text">Участие в значимых промышленных и коммерческих проектах страны.</span></p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow"><span class="en-text">Open Positions</span><span class="ru-text">Открытые вакансии</span></div><h2><span class="en-text">Join the Team</span><span class="ru-text">Присоединяйтесь к команде</span></h2></div>
+    </div>
+    <div class="grid-3 reveal reveal-stagger">
+      <div class="card" style="--i:0">
+        <h3><span class="en-text">MEP Engineer</span><span class="ru-text">Инженер MEP</span></h3>
+        <p><span class="en-text">Design and supervision of HVAC, electrical, and plumbing installations.</span><span class="ru-text">Проектирование и контроль монтажа систем HVAC, электрики и сантехники.</span></p>
+        <p style="font-size:13px; color:var(--orange); margin:0;"><span class="en-text">Tashkent · Full-time</span><span class="ru-text">г. Ташкент · Полная занятость</span></p>
+      </div>
+      <div class="card" style="--i:1">
+        <h3><span class="en-text">Site Manager</span><span class="ru-text">Прораб / Site Manager</span></h3>
+        <p><span class="en-text">Construction site management, timeline oversight, and quality control.</span><span class="ru-text">Управление строительной площадкой, контроль сроков и качества работ.</span></p>
+        <p style="font-size:13px; color:var(--orange); margin:0;"><span class="en-text">Across Uzbekistan · Full-time</span><span class="ru-text">По Узбекистану · Полная занятость</span></p>
+      </div>
+      <div class="card" style="--i:2">
+        <h3><span class="en-text">Electrician</span><span class="ru-text">Электромонтажник</span></h3>
+        <p><span class="en-text">Installation of power and low-voltage networks at industrial sites.</span><span class="ru-text">Монтаж силовых и слаботочных сетей на промышленных объектах.</span></p>
+        <p style="font-size:13px; color:var(--orange); margin:0;"><span class="en-text">Tashkent · Full-time</span><span class="ru-text">г. Ташкент · Полная занятость</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM WITH WORKING EN/RU DYNAMIC PLACEHOLDERS -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow"><span class="en-text">Send Resume</span><span class="ru-text">Отправить резюме</span></div><h2><span class="en-text">Didn't find a matching vacancy?</span><span class="ru-text">Не нашли подходящую вакансию?</span></h2></div>
+    </div>
+    <form class="reveal" data-cb-form novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="c-name"><span class="en-text">Name</span><span class="ru-text">Имя</span></label>
+          <input id="c-name" name="name" type="text" required>
+        </div>
+        <div class="field">
+          <label for="c-phone"><span class="en-text">Phone</span><span class="ru-text">Телефон</span></label>
+          <input id="c-phone" name="phone" type="tel" required>
+        </div>
+        <div class="field">
+          <label for="c-position"><span class="en-text">Desired Position</span><span class="ru-text">Желаемая должность</span></label>
+          <input id="c-position" name="position" type="text">
+        </div>
+        <div class="field">
+          <label for="c-email"><span class="en-text">Email</span><span class="ru-text">Электронная почта</span></label>
+          <input id="c-email" name="email" type="email">
+        </div>
+        <div class="field full">
+          <label for="c-msg"><span class="en-text">Message</span><span class="ru-text">Сообщение</span></label>
+          <textarea id="c-msg" name="message" data-placeholder-en="Tell us about your experience" data-placeholder-ru="Расскажите о своём опыте"></textarea>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit" style="margin-top:20px;">
+        <span class="en-text">Submit Resume</span><span class="ru-text">Отправить резюме</span>
+      </button>
+    </form>
+    <div class="form-success reveal" style="margin-top:20px;">
+      <span class="en-text">Thank you! Your application has been sent — we will contact you shortly.</span>
+      <span class="ru-text">Спасибо! Ваша заявка отправлена — мы свяжемся с вами в ближайшее время.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER WITH FIXED SERVICES & TRANSLATED CONTENT -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand"><span class="brand-mark">CB</span>COSTA BRAVA</a>
+        <p style="max-width:280px; font-size:14.5px;"><span class="en-text">Full-cycle construction and engineering systems in Uzbekistan.</span><span class="ru-text">Строительство и инженерные системы полного цикла в Узбекистане.</span></p>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en-text">Menu</span><span class="ru-text">Меню</span></h4>
+        <ul>
+          <li><a href="about.html"><span class="en-text">About</span><span class="ru-text">О компании</span></a></li>
+          <li><a href="services.html"><span class="en-text">Services</span><span class="ru-text">Услуги</span></a></li>
+          <li><a href="careers.html"><span class="en-text">Careers</span><span class="ru-text">Карьера</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en-text">Services</span><span class="ru-text">Услуги</span></h4>
+        <ul>
+          <li><a href="services.html"><span class="en-text">Civil Construction</span><span class="ru-text">Гражданское строительство</span></a></li>
+          <li><a href="services.html"><span class="en-text">HVAC Systems</span><span class="ru-text">Системы ОВК</span></a></li>
+          <li><a href="services.html"><span class="en-text">Electrical Works</span><span class="ru-text">Электромонтажные работы</span></a></li>
+          <li><a href="services.html"><span class="en-text">Facility Maintenance</span><span class="ru-text">Техническое обслуживание</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en-text">Contact</span><span class="ru-text">Контакты</span></h4>
+        <ul>
+          <li><a href="tel:+998996173555">+998 99 617 35 55</a></li>
+          <li><a href="mailto:info@costabrava.uz">info@costabrava.uz</a></li>
+          <li><a href="contact.html"><span class="en-text">Tashkent, Uzbekistan</span><span class="ru-text">г. Ташкент, Узбекистан</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span><span class="en-text">© 2026 Costa Brava. All rights reserved.</span><span class="ru-text">© 2026 Costa Brava. Все права защищены.</span></span>
+      <span><span class="en-text">Construction · Engineering · Maintenance</span><span class="ru-text">Строительство · Инжиниринг · Техническое обслуживание</span></span>
+    </div>
+  </div>
+</footer>
 
 <script src="script.js"></script>
 </body>
