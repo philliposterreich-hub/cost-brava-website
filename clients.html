@@ -9,6 +9,47 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* Стилизация сетки логотипов для одинакового визуального отображения */
+  .grid-4 .card {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 140px !important;
+    padding: 24px !important;
+    overflow: hidden;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, rgba(0,0,0,0.08));
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  }
+  .grid-4 .card img {
+    max-height: 55px;
+    max-width: 85%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .grid-4 .card img:hover {
+    transform: scale(1.04);
+  }
+  /* Подстройка JPG логотипов с белым фоном под светлую и темную тему */
+  .logo-jpg {
+    mix-blend-mode: multiply;
+  }
+  [data-theme="dark"] .logo-jpg {
+    mix-blend-mode: normal;
+    background-color: #ffffff;
+    padding: 8px;
+    border-radius: 8px;
+    max-height: 48px !important;
+  }
+  /* Оптимизация контрастности в темной теме */
+  [data-theme="dark"] .grid-4 .card img:not(.logo-jpg) {
+    filter: brightness(1) contrast(1.05);
+  }
+</style>
 </head>
 <body>
 
@@ -61,14 +102,30 @@
       <div><div class="eyebrow">Клиенты</div><h2>Наши заказчики</h2></div>
     </div>
     <div class="grid-4 reveal reveal-stagger">
-      <div class="card text-center" style="--i:0"><h3 style="font-family:var(--font-head);">Coca-Cola<br>Uzbekistan</h3></div>
-      <div class="card text-center" style="--i:1"><h3 style="font-family:var(--font-head);">Golden House</h3></div>
-      <div class="card text-center" style="--i:2"><h3 style="font-family:var(--font-head);">Qo‘ng‘irot<br>Soda Zavodi</h3></div>
-      <div class="card text-center" style="--i:3"><h3 style="font-family:var(--font-head);">AKFA</h3></div>
-      <div class="card text-center" style="--i:4"><h3 style="font-family:var(--font-head);">Artel</h3></div>
-      <div class="card text-center" style="--i:5"><h3 style="font-family:var(--font-head);">Murad Buildings</h3></div>
-      <div class="card text-center" style="--i:6"><h3 style="font-family:var(--font-head);">Enter Engineering</h3></div>
-      <div class="card text-center" style="--i:7"><h3 style="font-family:var(--font-head);">UzAuto Motors</h3></div>
+      <div class="card text-center" style="--i:0">
+        <img src="coca-cola.png" alt="Coca-Cola Uzbekistan" loading="lazy">
+      </div>
+      <div class="card text-center" style="--i:1">
+        <img src="golden-house.jpg" alt="Golden House" class="logo-jpg" loading="lazy">
+      </div>
+      <div class="card text-center" style="--i:2">
+        <img src="soda.png" alt="Qo‘ng‘irot Soda Zavodi" loading="lazy">
+      </div>
+      <div class="card text-center" style="--i:3">
+        <img src="akfa.png" alt="AKFA" loading="lazy">
+      </div>
+      <div class="card text-center" style="--i:4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Shilda_Artel.svg" alt="Artel" loading="lazy">
+      </div>
+      <div class="card text-center" style="--i:5">
+        <img src="murad.jpg" alt="Murad Buildings" class="logo-jpg" loading="lazy">
+      </div>
+      <div class="card text-center" style="--i:6">
+        <img src="enter.jpg" alt="Enter Engineering" class="logo-jpg" loading="lazy">
+      </div>
+      <div class="card text-center" style="--i:7">
+        <img src="uzauto.png" alt="UzAuto Motors" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
