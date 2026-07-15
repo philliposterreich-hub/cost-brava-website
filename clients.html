@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: center;
     height: 140px; /* Locks all cards to the exact same height */
-    padding: 20px;
+    padding: 12px; /* Reduced padding to give logos maximum breathing room */
     background-color: #ffffff;
     border: 1px solid #eaeaea;
     border-radius: 12px;
@@ -24,15 +24,37 @@
   }
   
   .client-logo {
-    max-width: 75%; /* Prevents logos from touching the edges of the box */
-    max-height: 75%;
+    max-width: 90%; /* Increased from 75% to allow larger sizes */
+    max-height: 85%; /* Increased from 75% to allow larger sizes */
     object-fit: contain; /* Ensures logos maintain their correct proportions */
     transition: transform 0.3s ease;
   }
+
+  /* Custom scaling classes to balance logos with built-in empty margins */
+  .scale-up {
+    transform: scale(1.25);
+  }
   
+  .scale-up-more {
+    transform: scale(1.45);
+  }
+  
+  /* Smooth hover animations */
   .client-logo-card:hover {
-    transform: translateY(-5px); /* Modern floating effect on hover */
+    transform: translateY(-5px); /* Modern floating effect */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  .client-logo-card:hover .client-logo {
+    transform: scale(1.05);
+  }
+
+  .client-logo-card:hover .client-logo.scale-up {
+    transform: scale(1.3);
+  }
+
+  .client-logo-card:hover .client-logo.scale-up-more {
+    transform: scale(1.52);
   }
 </style>
 </head>
@@ -87,29 +109,37 @@
       <div><div class="eyebrow">Клиенты</div><h2>Наши заказчики</h2></div>
     </div>
     <div class="grid-4 reveal reveal-stagger">
+      <!-- Coca-cola has a heavy solid background, so it stays at normal scale -->
       <div class="card text-center client-logo-card" style="--i:0">
         <img src="coca-cola.png" alt="Coca-Cola Uzbekistan" class="client-logo">
       </div>
+      <!-- Golden House scaled up slightly -->
       <div class="card text-center client-logo-card" style="--i:1">
-        <img src="golden-house.jpg" alt="Golden House" class="client-logo">
+        <img src="golden-house.jpg" alt="Golden House" class="client-logo scale-up">
       </div>
+      <!-- Soda logo scaled up slightly -->
       <div class="card text-center client-logo-card" style="--i:2">
-        <img src="soda.png" alt="Qo‘ng‘irot Soda Zavodi" class="client-logo">
+        <img src="soda.png" alt="Qo‘ng‘irot Soda Zavodi" class="client-logo scale-up">
       </div>
+      <!-- AKFA logo scaled up slightly -->
       <div class="card text-center client-logo-card" style="--i:3">
-        <img src="akfa.png" alt="AKFA" class="client-logo">
+        <img src="akfa.png" alt="AKFA" class="client-logo scale-up">
       </div>
+      <!-- Artel scaled up significantly due to thin lettering -->
       <div class="card text-center client-logo-card" style="--i:4">
-        <img src="artel.png" alt="Artel" class="client-logo">
+        <img src="artel.png" alt="Artel" class="client-logo scale-up-more">
       </div>
+      <!-- Murad Buildings scaled up slightly -->
       <div class="card text-center client-logo-card" style="--i:5">
-        <img src="murad.jpg" alt="Murad Buildings" class="client-logo">
+        <img src="murad.jpg" alt="Murad Buildings" class="client-logo scale-up">
       </div>
+      <!-- Enter Engineering scaled up significantly due to small font -->
       <div class="card text-center client-logo-card" style="--i:6">
-        <img src="enter.jpg" alt="Enter Engineering" class="client-logo">
+        <img src="enter.jpg" alt="Enter Engineering" class="client-logo scale-up-more">
       </div>
+      <!-- UzAuto scaled up significantly due to thin layout -->
       <div class="card text-center client-logo-card" style="--i:7">
-        <img src="uzauto.png" alt="UzAuto Motors" class="client-logo">
+        <img src="uzauto.png" alt="UzAuto Motors" class="client-logo scale-up-more">
       </div>
     </div>
   </div>
