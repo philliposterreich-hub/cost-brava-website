@@ -469,3 +469,16 @@ html[data-theme="dark"] .burger.open span{ background:#fff; }
   cursor: pointer; transition: background 0.2s, color 0.2s; 
 }
 .lang-dropdown button:hover { background: var(--bg-alt); color: var(--orange); }
+
+/* =========================================================
+   Language Visibility Controls
+   ========================================================= */
+/* Hide Russian text when the site is in English */
+html[lang="en"] .ru-text {
+  display: none !important;
+}
+
+/* Hide English text when the site is in Russian */
+html[lang="ru"] .en-text {
+  display: none !important;
+}
