@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-lang-state="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +7,23 @@
 <meta name="description" content="Costa Brava Clients: Coca-Cola Uzbekistan, Golden House, AKFA, Artel, Enter Engineering and more. Partners: Sika, BASF, Schneider Electric, ABB, Daikin.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght=500;600;700&family=Inter:wght=400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+
 <style>
-  /* --- BULLETPROOF HEADER & LAYOUT FIXES --- */
+  /* --- CRITICAL LAYOUT & ISOLATED RESET --- */
   .site-header {
-    width: 100%;
-    background: #ffffff;
-    border-bottom: 1px solid #eaeaea;
-    position: relative;
-    z-index: 1000;
+    width: 100% !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #eaeaea !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+    box-sizing: border-box !important;
+  }
+  .site-header * {
+    box-sizing: border-box !important;
   }
   .site-header .container {
     display: flex !important;
@@ -25,81 +32,368 @@
     justify-content: space-between !important;
     max-width: 1200px !important;
     margin: 0 auto !important;
-    padding: 15px 20px !important;
-    box-sizing: border-box !important;
+    padding: 0 24px !important;
+    height: 75px !important;
   }
-  .brand {
+
+  /* --- BRAND / LOGO ALIGNMENT --- */
+  .site-header .brand {
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 10px !important;
     text-decoration: none !important;
+    font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;
+    font-size: 18px !important;
     color: #111111 !important;
+    text-transform: uppercase !important;
+    letter-spacing: -0.5px !important;
+    line-height: 1 !important;
   }
-  .nav-links {
+  .site-header .brand-mark {
+    background: #f97316 !important; /* Costa Brava Orange */
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-size: 13px !important;
+    padding: 6px 10px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+  }
+
+  /* --- NAVIGATION LINKS --- */
+  .site-header .nav-links {
     display: flex !important;
     flex-direction: row !important;
-    gap: 24px !important;
     align-items: center !important;
+    gap: 28px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
   }
-  .nav-links a {
+  .site-header .nav-links a {
     text-decoration: none !important;
+    font-family: 'Inter', sans-serif !important;
     font-weight: 500 !important;
+    font-size: 14.5px !important;
+    color: #475569 !important;
+    transition: color 0.2s ease !important;
+    position: relative !important;
+    padding: 6px 0 !important;
   }
-  .header-actions {
+  .site-header .nav-links a:hover,
+  .site-header .nav-links a.active {
+    color: #f97316 !important;
+  }
+  .site-header .nav-links a.active::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -4px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 2px !important;
+    background: #f97316 !important;
+    border-radius: 2px !important;
+  }
+
+  /* --- HEADER ACTIONS --- */
+  .site-header .header-actions {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     gap: 16px !important;
   }
-  .lang-switcher {
-    display: inline-flex !important;
+
+  /* --- LANGUAGE DROP-DOWN --- */
+  .site-header .lang-switcher {
     position: relative !important;
+    display: inline-block !important;
   }
-  
-  /* Strictly hide mobile layout on desktop */
+  .site-header .lang-btn {
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #334155 !important;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    transition: all 0.2s ease !important;
+  }
+  .site-header .lang-btn:hover {
+    background: #e2e8f0 !important;
+  }
+  .site-header .lang-dropdown {
+    display: none;
+    position: absolute !important;
+    top: calc(100% + 6px) !important;
+    right: 0 !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    min-width: 110px !important;
+    z-index: 10000 !important;
+    padding: 6px !important;
+  }
+  .site-header .lang-dropdown.open {
+    display: block !important;
+  }
+  .site-header .lang-dropdown button {
+    display: block !important;
+    width: 100% !important;
+    padding: 8px 12px !important;
+    text-align: left !important;
+    background: none !important;
+    border: none !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #334155 !important;
+    cursor: pointer !important;
+    border-radius: 6px !important;
+  }
+  .site-header .lang-dropdown button:hover {
+    background: #f1f5f9 !important;
+    color: #f97316 !important;
+  }
+
+  /* --- GET QUOTE BUTTON --- */
+  .site-header .btn-primary {
+    background: #f97316 !important;
+    color: #ffffff !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    padding: 10px 18px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2) !important;
+    border: none !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    line-height: 1 !important;
+  }
+  .site-header .btn-primary:hover {
+    background: #ea580c !important;
+    box-shadow: 0 4px 16px rgba(249, 115, 22, 0.35) !important;
+  }
+
+  /* --- MOBILE NAVIGATION PANEL --- */
+  .site-header .burger {
+    display: none !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 6px !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+  }
+  .site-header .burger span {
+    display: block !important;
+    width: 22px !important;
+    height: 2px !important;
+    background: #334155 !important;
+    border-radius: 2px !important;
+    transition: all 0.2s ease !important;
+  }
   .mobile-nav {
     display: none !important;
   }
-  .burger {
-    display: none !important;
+
+  /* --- BILINGUAL TEXT STATE MANAGEMENT --- */
+  [data-lang-state="en"] .ru-text { display: none !important; }
+  [data-lang-state="ru"] .en-text { display: none !important; }
+
+  /* --- PAGE HERO STYLES --- */
+  .page-hero {
+    position: relative !important;
+    background: #0f172a !important;
+    color: #ffffff !important;
+    padding: 80px 24px !important;
+    overflow: hidden !important;
+  }
+  .page-hero .hero-media {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0.15 !important;
+    pointer-events: none !important;
+  }
+  .page-hero .hero-media img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  .page-hero .container {
+    position: relative !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    z-index: 2 !important;
+  }
+  .page-hero .breadcrumb {
+    font-size: 13px !important;
+    color: #94a3b8 !important;
+    margin-bottom: 16px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+  }
+  .page-hero .breadcrumb a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+  }
+  .page-hero .eyebrow {
+    color: #f97316 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    margin-bottom: 8px !important;
+  }
+  .page-hero h1 {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 38px !important;
+    margin: 0 0 12px 0 !important;
+    line-height: 1.2 !important;
   }
 
-  /* --- CLIENT LOGO GRID STYLES --- */
-  .client-logo-card { 
-    display: flex !important; 
-    align-items: center !important; 
-    justify-content: center !important; 
-    height: 140px !important; 
-    padding: 16px !important; 
-    background-color: #ffffff !important; 
-    border: 1px solid #eaeaea !important; 
-    border-radius: 12px !important; 
-    box-sizing: border-box !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important; 
+  /* --- SECTIONS & HEADINGS --- */
+  .cb-section-title {
+    text-align: center !important;
+    margin-bottom: 50px !important;
   }
-  .client-logo { 
-    max-width: 90% !important; 
-    max-height: 85% !important; 
-    object-fit: contain !important; 
-    transition: transform 0.3s ease !important; 
+  .cb-section-title .eyebrow {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    color: #f97316 !important;
+    margin-bottom: 8px !important;
+    display: block !important;
   }
-  .scale-up { transform: scale(1.25); }
-  .scale-up-more { transform: scale(1.45); }
-  
-  .client-logo-card:hover { 
-    transform: translateY(-5px) !important; 
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important; 
+  .cb-section-title h2 {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 32px !important;
+    color: #0f172a !important;
+    margin: 0 !important;
   }
-  .client-logo-card:hover .client-logo { transform: scale(1.05); }
-  .client-logo-card:hover .client-logo.scale-up { transform: scale(1.3); }
-  .client-logo-card:hover .client-logo.scale-up-more { transform: scale(1.52); }
 
-  /* Responsive breakpoints */
+  /* --- UNIFORM LOGO GRID --- */
+  .client-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 24px !important;
+    margin-top: 40px !important;
+  }
+  .client-card {
+    background: #ffffff !important;
+    border: 1px solid #f1f5f9 !important;
+    border-radius: 12px !important;
+    height: 130px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  .client-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.08) !important;
+    border-color: #e2e8f0 !important;
+  }
+  .client-card img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    filter: grayscale(100%) !important;
+    opacity: 0.75 !important;
+    transition: all 0.3s ease !important;
+  }
+  .client-card:hover img {
+    filter: grayscale(0%) !important;
+    opacity: 1 !important;
+  }
+
+  /* Structural fixes for custom scaling elements */
+  .client-card img.scale-up { transform: scale(1.15) !important; }
+  .client-card:hover img.scale-up { transform: scale(1.22) !important; }
+  .client-card img.scale-up-more { transform: scale(1.3) !important; }
+  .client-card:hover img.scale-up-more { transform: scale(1.38) !important; }
+
+  /* --- RESPONSIVE MEDIA QUERIES --- */
+  @media (max-width: 992px) {
+    .site-header .nav-links,
+    .site-header .header-actions .btn-primary,
+    .site-header .header-actions .lang-switcher {
+      display: none !important;
+    }
+    .site-header .burger {
+      display: flex !important;
+    }
+    .mobile-nav {
+      position: fixed !important;
+      top: 75px !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: calc(100vh - 75px) !important;
+      background: #ffffff !important;
+      z-index: 9998 !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      padding: 40px 20px !important;
+      gap: 24px !important;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05) !important;
+      display: none !important;
+    }
+    .mobile-nav.active {
+      display: flex !important;
+    }
+    .mobile-nav a {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 600 !important;
+      color: #1e293b !important;
+      text-decoration: none !important;
+    }
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      color: #f97316 !important;
+    }
+    .client-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+    .page-hero h1 {
+      font-size: 30px !important;
+    }
+  }
+
   @media (max-width: 768px) {
-    .nav-links { display: none !important; }
-    .burger { display: flex !important; flex-direction: column; gap: 4px; cursor: pointer; background: none; border: none; }
-    .burger span { width: 20px; height: 2px; background: #333; }
+    .client-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .client-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .site-header .container {
+      padding: 0 16px !important;
+    }
   }
 </style>
 </head>
@@ -117,22 +411,30 @@
     </nav>
     <div class="header-actions">
       <div class="lang-switcher">
-        <button class="lang-btn" aria-label="Switch language"><span class="current-lang">EN</span> ▼</button>
+        <button class="lang-btn" aria-label="Switch language">
+          <span class="current-lang">EN</span> <span style="font-size: 9px;">▼</span>
+        </button>
         <div class="lang-dropdown">
           <button data-lang="en">English</button>
           <button data-lang="ru">Русский</button>
         </div>
       </div>
-      <button class="theme-toggle" aria-label="Toggle theme">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
-      </button>
-      <a href="contact.html" class="btn btn-primary" style="padding:12px 22px; text-decoration:none;">
+      <a href="contact.html" class="btn btn-primary">
         <span class="en-text">Get Quote</span><span class="ru-text">КП</span>
       </a>
       <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav">
+  <a href="index.html"><span class="en-text">About</span><span class="ru-text">О компании</span></a>
+  <a href="services.html"><span class="en-text">Services</span><span class="ru-text">Услуги</span></a>
+  <a href="clients.html" class="active"><span class="en-text">Clients</span><span class="ru-text">Клиенты</span></a>
+  <a href="careers.html"><span class="en-text">Careers</span><span class="ru-text">Карьера</span></a>
+  <a href="contact.html"><span class="en-text">Contact</span><span class="ru-text">Контакты</span></a>
+</div>
 
 <section class="page-hero">
   <div class="hero-media"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=75" alt="Business Cooperation"></div>
@@ -146,65 +448,126 @@
       <span class="en-text">Companies That Choose Reliability</span>
       <span class="ru-text">Компании, которые выбирают надёжность</span>
     </h1>
-    <p class="lead" style="color:rgba(255,255,255,0.82);">
+    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 16px; max-width: 650px;">
       <span class="en-text">Industrial enterprises, developers, and government organizations across Uzbekistan.</span>
       <span class="ru-text">Промышленные предприятия, девелоперы и государственные организации по всему Узбекистану.</span>
     </p>
   </div>
 </section>
 
-<section style="padding: 60px 0;">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow"><span class="en-text">Clients</span><span class="ru-text">Клиенты</span></div>
+<!-- Client Logos Section -->
+<section style="padding: 80px 0; background: #ffffff;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+    <div class="cb-section-title">
+      <span class="eyebrow"><span class="en-text">Clients</span><span class="ru-text">Клиенты</span></span>
       <h2><span class="en-text">Our Customers</span><span class="ru-text">Наши заказчики</span></h2>
     </div>
     
-    <!-- Restored 8 Real Client Images Grid -->
-    <div class="grid-4" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px;">
+    <!-- 8 Uploaded Client Images -->
+    <div class="client-grid">
       <!-- Coca-Cola -->
-      <div class="client-logo-card"><img src="coca-cola.png" alt="Coca-Cola Uzbekistan" class="client-logo"></div>
+      <div class="client-card">
+        <img src="coca-cola.png" alt="Coca-Cola Uzbekistan">
+      </div>
       <!-- Golden House -->
-      <div class="client-logo-card"><img src="golden-house.jpg" alt="Golden House" class="client-logo scale-up"></div>
+      <div class="client-card">
+        <img src="golden-house.jpg" alt="Golden House" class="scale-up">
+      </div>
       <!-- Kungrad Soda -->
-      <div class="client-logo-card"><img src="soda.png" alt="Qo‘ng‘irot Soda Zavodi" class="client-logo scale-up"></div>
+      <div class="client-card">
+        <img src="soda.png" alt="Qo‘ng‘irot Soda Zavodi" class="scale-up">
+      </div>
       <!-- AKFA -->
-      <div class="client-logo-card"><img src="akfa.png" alt="AKFA" class="client-logo scale-up"></div>
+      <div class="client-card">
+        <img src="akfa.png" alt="AKFA" class="scale-up">
+      </div>
       <!-- Artel -->
-      <div class="client-logo-card"><img src="artel.png" alt="Artel" class="client-logo scale-up-more"></div>
+      <div class="client-card">
+        <img src="artel.png" alt="Artel" class="scale-up-more">
+      </div>
       <!-- Murad Buildings -->
-      <div class="client-logo-card"><img src="murad.jpg" alt="Murad Buildings" class="client-logo scale-up"></div>
+      <div class="client-card">
+        <img src="murad.jpg" alt="Murad Buildings" class="scale-up">
+      </div>
       <!-- Enter Engineering -->
-      <div class="client-logo-card"><img src="enter.jpg" alt="Enter Engineering" class="client-logo scale-up-more"></div>
+      <div class="client-card">
+        <img src="enter.jpg" alt="Enter Engineering" class="scale-up-more">
+      </div>
       <!-- UzAuto Motors -->
-      <div class="client-logo-card"><img src="uzauto.png" alt="UzAuto Motors" class="client-logo scale-up-more"></div>
+      <div class="client-card">
+        <img src="uzauto.png" alt="UzAuto Motors" class="scale-up-more">
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section-alt" style="padding: 60px 0; background:#f9f9f9;">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow"><span class="en-text">Partners</span><span class="ru-text">Партнёры</span></div>
+<!-- Partners Section -->
+<section style="padding: 80px 0; background: #f8fafc; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+    <div class="cb-section-title">
+      <span class="eyebrow"><span class="en-text">Partners</span><span class="ru-text">Партнёры</span></span>
       <h2><span class="en-text">Global Manufacturers & Brands</span><span class="ru-text">Мировые производители и бренды</span></h2>
     </div>
-    <div class="logo-strip" style="overflow:hidden; margin-top:30px;">
-      <div class="logo-track" style="display:flex; gap:40px; font-weight:600; color:#777; font-size:18px;">
+    <div style="overflow: hidden; margin-top: 30px;">
+      <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; font-family: 'Poppins', sans-serif; font-weight: 600; color: #64748b; font-size: 16px;">
         <span>Sika</span><span>BASF</span><span>Schneider Electric</span><span>ABB</span><span>Legrand</span><span>Daikin</span><span>LG</span><span>Tikkurila</span>
       </div>
     </div>
   </div>
 </section>
 
-<footer class="site-footer" style="background:#111; color:#fff; padding:60px 0; margin-top:60px;">
-  <div class="container" style="max-width:1200px; margin:0 auto; padding:0 20px;">
-    <div class="footer-bottom" style="display:flex; justify-content:space-between; border-top:1px solid #333; padding-top:20px; font-size:14px; color:#aaa;">
+<!-- Footer -->
+<footer style="background: #0f172a; color: #ffffff; padding: 60px 0;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; border-top: 1px solid #334155; padding-top: 30px; font-family: 'Inter', sans-serif; font-size: 14px; color: #94a3b8;">
       <span>© 2026 Costa Brava. All rights reserved.</span>
       <span>Construction · Engineering · Maintenance</span>
     </div>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script>
+  // Language Switcher Toggle Functionality
+  const langBtn = document.querySelector('.lang-btn');
+  const langDropdown = document.querySelector('.lang-dropdown');
+  const currentLangSpan = document.querySelector('.current-lang');
+
+  langBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langDropdown.classList.toggle('open');
+  });
+
+  document.addEventListener('click', () => {
+    langDropdown.classList.remove('open');
+  });
+
+  // Handle translation switcher clicks
+  const langButtons = document.querySelectorAll('.lang-dropdown button');
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selectedLang = btn.getAttribute('data-lang');
+      document.documentElement.setAttribute('data-lang-state', selectedLang);
+      currentLangSpan.textContent = selectedLang.toUpperCase();
+    });
+  });
+
+  // Mobile Menu Toggle Functionality
+  const burgerBtn = document.querySelector('.burger');
+  const mobileNav = document.querySelector('.mobile-nav');
+
+  burgerBtn.addEventListener('click', () => {
+    mobileNav.classList.toggle('active');
+    const burgerLines = burgerBtn.querySelectorAll('span');
+    if(mobileNav.classList.contains('active')) {
+      burgerLines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      burgerLines[1].style.opacity = '0';
+      burgerLines[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+    } else {
+      burgerLines[0].style.transform = 'none';
+      burgerLines[1].style.opacity = '1';
+      burgerLines[2].style.transform = 'none';
+    }
+  });
+</script>
 </body>
 </html>
