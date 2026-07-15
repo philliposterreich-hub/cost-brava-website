@@ -7,402 +7,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ==========================================
-       GLOBAL STYLES & TRANSLATION ENGINE
-       ========================================== */
-    :root {
-      --primary: #0f2249;
-      --orange: #ff7a00;
-      --bg: #f8f9fa;
-      --card-bg: #ffffff;
-      --text: #333333;
-      --text-muted: #6c757d;
-      --border: #eaeaea;
-    }
-
-    [data-theme="dark"] {
-      --primary: #ffffff;
-      --bg: #121212;
-      --card-bg: #1e1e1e;
-      --text: #f0f0f0;
-      --text-muted: #a0a0a0;
-      --border: #2d2d2d;
-    }
-
-    /* Core Translation Mechanism */
-    html[lang="en"] .ru-text { display: none !important; }
-    html[lang="ru"] .en-text { display: none !important; }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding-top: 80px; /* Space for sticky header */
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* ==========================================
-       HEADER STYLES (STICKY FIXED)
-       ========================================== */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: var(--card-bg);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-    }
-
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-
-    .brand {
-      font-weight: 700;
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-mark {
-      background: var(--orange);
-      color: white;
-      padding: 5px 10px;
-      border-radius: 4px;
-      font-size: 14px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .nav-links a.active, .nav-links a:hover {
-      color: var(--orange);
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    /* Theme Toggle Button Styling */
-    .theme-btn {
-      background: none;
-      border: 1px solid var(--border);
-      padding: 8px;
-      border-radius: 6px;
-      cursor: pointer;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      transition: border-color 0.3s, background-color 0.3s;
-    }
-    
-    .theme-btn:hover {
-      border-color: var(--orange);
-      background-color: rgba(255, 122, 0, 0.05);
-    }
-
-    .theme-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: var(--text);
-      stroke-width: 2;
-    }
-
-    /* Lang Dropdown */
-    .lang-switcher {
-      position: relative;
-    }
-
-    .lang-btn {
-      background: none;
-      border: 1px solid var(--border);
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .lang-dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-
-    .lang-dropdown.show {
-      display: block;
-    }
-
-    .lang-dropdown button {
-      background: none;
-      border: none;
-      padding: 10px 20px;
-      width: 100%;
-      text-align: left;
-      cursor: pointer;
-      color: var(--text);
-    }
-
-    .lang-dropdown button:hover {
-      background: var(--bg);
-    }
-
-    /* ==========================================
-       HERO SECTION
-       ========================================== */
-    .page-hero {
-      background: linear-gradient(rgba(15, 34, 73, 0.85), rgba(15, 34, 73, 0.85)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80') no-repeat center center/cover;
-      color: white;
-      padding: 100px 0;
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .page-hero h1 {
-      font-size: 42px;
-      margin-bottom: 15px;
-    }
-
-    /* ==========================================
-       SERVICE CARDS GRID
-       ========================================== */
-    .section-title {
-      font-size: 28px;
-      color: var(--primary);
-      margin-bottom: 40px;
-      text-align: center;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 50px;
-      height: 3px;
-      background: var(--orange);
-      margin: 10px auto 0;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
-      margin-bottom: 80px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 40px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .card:hover {
-      border-color: var(--orange);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      transform: translateY(-5px);
-    }
-
-    .card-icon {
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 122, 0, 0.08);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 25px;
-    }
-
-    .card-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--orange);
-    }
-
-    .card h3 {
-      font-size: 20px;
-      color: var(--primary);
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
-
-    .card p {
-      color: var(--text-muted);
-      font-size: 15px;
-      margin-bottom: 20px;
-    }
-
-    .card ul {
-      list-style: none;
-    }
-
-    .card ul li {
-      position: relative;
-      padding-left: 20px;
-      margin-bottom: 10px;
-      font-size: 14.5px;
-      color: var(--text-muted);
-      border-bottom: 1px dashed var(--border);
-      padding-bottom: 8px;
-    }
-
-    .card ul li::before {
-      content: "•";
-      color: var(--orange);
-      position: absolute;
-      left: 0;
-      font-size: 18px;
-      top: -2px;
-    }
-
-    /* ==========================================
-       FLOATING ACTIONS & FOOTER
-       ========================================== */
-    .whatsapp-widget {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      background: #25d366;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      z-index: 999;
-      cursor: pointer;
-    }
-
-    .whatsapp-widget svg {
-      width: 32px;
-      height: 32px;
-      fill: white;
-    }
-
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: var(--primary);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      z-index: 999;
-      cursor: pointer;
-      border: none;
-    }
-
-    .back-to-top svg {
-      width: 20px;
-      height: 20px;
-      stroke: white;
-      fill: none;
-    }
-
-    .site-footer {
-      background: #0f2249;
-      color: #a0b2cb;
-      padding: 60px 0 30px;
-      margin-top: 100px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-col h4 {
-      color: white;
-      margin-bottom: 20px;
-      font-size: 16px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 10px;
-    }
-
-    .footer-col ul li a {
-      color: #a0b2cb;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer-col ul li a:hover {
-      color: var(--orange);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid #1e3a6c;
-      padding-top: 30px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('preferred-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const savedLang = localStorage.getItem('preferred-language') || 'en';
+      document.documentElement.setAttribute('lang', savedLang);
+    })();
+  </script>
 </head>
 <body>
 
-<!-- STICKY HEADER -->
 <header class="site-header">
   <div class="container header-container">
     <a href="index.html" class="brand"><span class="brand-mark">CB</span>COSTA BRAVA</a>
@@ -414,10 +30,7 @@
       <a href="contact.html"><span class="en-text">Contact</span><span class="ru-text">Контакты</span></a>
     </nav>
     <div class="header-actions">
-      
-      <!-- DAY/NIGHT THEME SWITCHER -->
       <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">
-        <!-- Sun Icon (visible in Dark Mode) -->
         <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
           <circle cx="12" cy="12" r="5"></circle>
           <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -429,13 +42,10 @@
           <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
         </svg>
-        <!-- Moon Icon (visible in Light Mode) -->
         <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </button>
-
-      <!-- LANGUAGE SWITCHER -->
       <div class="lang-switcher">
         <button class="lang-btn" aria-label="Switch language">
           <span class="current-lang">EN</span> ▼
@@ -445,12 +55,10 @@
           <button data-lang="ru">Русский</button>
         </div>
       </div>
-
     </div>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="page-hero">
   <div class="container">
     <h1>
@@ -464,7 +72,6 @@
   </div>
 </section>
 
-<!-- SECTION 1: CONSTRUCTION -->
 <section class="container">
   <h2 class="section-title">
     <span class="en-text">Civil Construction & Renovation</span>
@@ -472,7 +79,6 @@
   </h2>
   
   <div class="services-grid">
-    <!-- Card 1 -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -492,7 +98,6 @@
       </ul>
     </div>
 
-    <!-- Card 2 -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg>
@@ -512,7 +117,6 @@
       </ul>
     </div>
 
-    <!-- Card 3 -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2L2 12h3v8h14v-8h3L12 2z"/></svg>
@@ -532,7 +136,6 @@
       </ul>
     </div>
 
-    <!-- Card 4 -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
@@ -554,7 +157,6 @@
   </div>
 </section>
 
-<!-- SECTION 2: ENGINEERING / MEP -->
 <section class="container">
   <h2 class="section-title">
     <span class="en-text">Engineering Systems & MEP</span>
@@ -562,7 +164,6 @@
   </h2>
   
   <div class="services-grid">
-    <!-- Card 1 -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -582,7 +183,6 @@
       </ul>
     </div>
 
-    <!-- Card 2 -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -602,7 +202,6 @@
       </ul>
     </div>
 
-    <!-- Card 3 -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"/><path d="M17 14h.01M7 14h.01"/></svg>
@@ -622,7 +221,6 @@
       </ul>
     </div>
 
-    <!-- Card 4 -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
@@ -642,7 +240,6 @@
       </ul>
     </div>
 
-    <!-- Card 5 -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
@@ -662,7 +259,6 @@
       </ul>
     </div>
 
-    <!-- Card 6 -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -684,16 +280,14 @@
   </div>
 </section>
 
-<!-- FLOATING WIDGETS -->
 <div class="whatsapp-widget" onclick="window.open('https://wa.me/998996173555')">
   <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.488 1.449 5.412 1.451 5.428 0 9.845-4.394 9.848-9.793.001-2.615-1.011-5.074-2.852-6.918C17.207 2.052 14.75 1.037 12.14 1.037c-5.433 0-9.85 4.394-9.853 9.792-.001 1.986.517 3.93 1.5 5.64l-.984 3.593 3.684-.966zm10.743-7.416c-.29-.145-1.716-.848-1.98-.942-.266-.096-.459-.145-.653.145-.193.29-.748.942-.917 1.135-.169.193-.338.217-.627.072-2.316-1.161-3.81-2.004-5.328-4.606-.4-.686.4-.637 1.144-2.128.116-.217.058-.41-.029-.555-.087-.145-.748-1.803-1.025-2.467-.27-.649-.546-.56-.748-.57-.193-.01-.41-.012-.627-.012-.217 0-.57.081-.869.41-.299.329-1.143 1.116-1.143 2.72s1.167 3.153 1.328 3.371c.162.217 2.296 3.507 5.562 4.918 2.37.1 3.256-.05 4.05-.124.814-.076 1.716-.701 1.958-1.378.24-.677.24-1.258.17-1.378-.073-.122-.267-.195-.556-.341z"/></svg>
 </div>
 
-<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+<button class="back-to-top" aria-label="Back to top">
   <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
@@ -727,75 +321,6 @@
   </div>
 </footer>
 
-<script>
-  // ==========================================
-  // 1. LANGUAGE SWITCHING ENGINE (WITH STATE PERSISTENCE)
-  // ==========================================
-  const langBtn = document.querySelector('.lang-btn');
-  const langDropdown = document.querySelector('.lang-dropdown');
-
-  // Toggle dropdown layout visibility
-  langBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    langDropdown.classList.toggle('show');
-  });
-
-  // Close dropdown on clicking outside
-  document.addEventListener('click', () => {
-    langDropdown.classList.remove('show');
-  });
-
-  // Function to apply translation configuration
-  function setLanguage(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    localStorage.setItem('preferred-language', lang); // Save choice in client storage
-    document.querySelector('.current-lang').textContent = lang.toUpperCase();
-  }
-
-  // Initial language check: local storage value, falling back to English (default)
-  const savedLang = localStorage.getItem('preferred-language') || 'en';
-  setLanguage(savedLang);
-
-  // Bind translation triggers
-  document.querySelectorAll('.lang-dropdown button').forEach(button => {
-    button.addEventListener('click', (e) => {
-      const selectedLang = e.currentTarget.getAttribute('data-lang');
-      setLanguage(selectedLang);
-      langDropdown.classList.remove('show');
-    });
-  });
-
-  // ==========================================
-  // 2. DAY/NIGHT (DARK) MODE SWITCH ENGINE (WITH STATE PERSISTENCE)
-  // ==========================================
-  const themeToggle = document.getElementById('theme-toggle');
-  const sunIcon = themeToggle.querySelector('.sun-icon');
-  const moonIcon = themeToggle.querySelector('.moon-icon');
-
-  // Apply theme class and swap button graphics
-  function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('preferred-theme', theme); // Store selection
-
-    if (theme === 'dark') {
-      sunIcon.style.display = 'block';
-      moonIcon.style.display = 'none';
-    } else {
-      sunIcon.style.display = 'none';
-      moonIcon.style.display = 'block';
-    }
-  }
-
-  // Initial load check: load stored selection, default to light
-  const savedTheme = localStorage.getItem('preferred-theme') || 'light';
-  setTheme(savedTheme);
-
-  // Bind clicks to switch current light/dark parameters
-  themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-  });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
