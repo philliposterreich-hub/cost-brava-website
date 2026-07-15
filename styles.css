@@ -482,3 +482,113 @@ html[lang="en"] .ru-text {
 html[lang="ru"] .en-text {
   display: none !important;
 }
+
+/* ==========================================================================
+   CLIENTS INFINITE MARQUEE
+   ========================================================================== */
+.clients-section {
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+/* Outer wrapper that clips the overflow and adds the elegant edge-fade */
+.logo-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  display: flex;
+}
+
+/* Soft gradients on left and right edges */
+.logo-marquee::before,
+.logo-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+.logo-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-color, #ffffff), transparent);
+}
+.logo-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-color, #ffffff), transparent);
+}
+
+/* Flex container holding the scrolling groups */
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 35s linear infinite; /* Control speed here */
+}
+
+/* Individual logo groups */
+.logo-group {
+  display: flex;
+  gap: 40px; /* Space between individual logo cards */
+  padding-right: 40px; /* Match the gap exactly for a perfect loop calculation */
+}
+
+/* Logo card boxes matching your visual design */
+.logo-card {
+  width: 240px;
+  height: 120px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.logo-card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(10%) contrast(90%); /* Optional: balances vivid logos on your UI */
+  transition: filter 0.3s ease;
+}
+
+.logo-card:hover img {
+  filter: grayscale(0%) contrast(100%);
+}
+
+/* Pause the moving animation when hovered */
+.logo-marquee:hover .logo-track {
+  animation-play-state: paused;
+}
+
+/* Keyframes to translate exactly half the total width of the track */
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Dark Mode adjustment for the edge-fade overlay */
+[data-theme="dark"] .logo-marquee::before {
+  background: linear-gradient(to right, #121212, transparent);
+}
+[data-theme="dark"] .logo-marquee::after {
+  background: linear-gradient(to left, #121212, transparent);
+}
+[data-theme="dark"] .logo-card {
+  background: #1e1e1e; /* Dark theme card background */
+  border-color: rgba(255, 255, 255, 0.05);
+}
