@@ -10,41 +10,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-  .grid-4 .card {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 140px !important;
-    padding: 24px !important;
-    overflow: hidden;
-    background: var(--card-bg, #ffffff);
-    border: 1px solid var(--border-color, rgba(0,0,0,0.08));
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  /* Custom styles to make client logos look fantastic */
+  .client-logo-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    padding: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .grid-4 .card img {
-    max-height: 55px;
-    max-width: 85%;
-    width: auto;
-    height: auto;
+  .client-logo {
+    max-width: 100%;
+    max-height: 80px;
     object-fit: contain;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: all 0.3s ease;
   }
-  .grid-4 .card img:hover {
-    transform: scale(1.04);
-  }
-  .logo-jpg {
-    mix-blend-mode: multiply;
-  }
-  [data-theme="dark"] .logo-jpg {
-    mix-blend-mode: normal;
-    background-color: #ffffff;
-    padding: 8px;
-    border-radius: 8px;
-    max-height: 48px !important;
-  }
-  [data-theme="dark"] .grid-4 .card img:not(.logo-jpg) {
-    filter: brightness(1) contrast(1.05);
+  .client-logo-card:hover .client-logo {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
   }
 </style>
 </head>
@@ -99,31 +85,29 @@
       <div><div class="eyebrow">Клиенты</div><h2>Наши заказчики</h2></div>
     </div>
     <div class="grid-4 reveal reveal-stagger">
-      <!-- Использование локальных файлов, предоставленных пользователем -->
-      <div class="card text-center" style="--i:0">
-        <img src="coca-cola.png" alt="Coca-Cola Uzbekistan" loading="lazy">
+      <div class="card text-center client-logo-card" style="--i:0">
+        <img src="coca-cola.png" alt="Coca-Cola Uzbekistan" class="client-logo">
       </div>
-      <div class="card text-center" style="--i:1">
-        <img src="golden-house.jpg" alt="Golden House" class="logo-jpg" loading="lazy">
+      <div class="card text-center client-logo-card" style="--i:1">
+        <img src="golden-house.jpg" alt="Golden House" class="client-logo">
       </div>
-      <div class="card text-center" style="--i:2">
-        <img src="soda.png" alt="Qo‘ng‘irot Soda Zavodi" loading="lazy">
+      <div class="card text-center client-logo-card" style="--i:2">
+        <img src="soda.png" alt="Qo‘ng‘irot Soda Zavodi" class="client-logo">
       </div>
-      <div class="card text-center" style="--i:3">
-        <img src="akfa.png" alt="AKFA" loading="lazy">
+      <div class="card text-center client-logo-card" style="--i:3">
+        <img src="akfa.png" alt="AKFA" class="client-logo">
       </div>
-      <div class="card text-center" style="--i:4">
-        <!-- Официальный векторный логотип Artel (прямая ссылка) -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Shilda_Artel.svg" alt="Artel" loading="lazy">
+      <div class="card text-center client-logo-card" style="--i:4">
+        <img src="Artel-01.png" alt="Artel" class="client-logo">
       </div>
-      <div class="card text-center" style="--i:5">
-        <img src="murad.jpg" alt="Murad Buildings" class="logo-jpg" loading="lazy">
+      <div class="card text-center client-logo-card" style="--i:5">
+        <img src="murad.jpg" alt="Murad Buildings" class="client-logo">
       </div>
-      <div class="card text-center" style="--i:6">
-        <img src="enter.jpg" alt="Enter Engineering" class="logo-jpg" loading="lazy">
+      <div class="card text-center client-logo-card" style="--i:6">
+        <img src="enter.jpg" alt="Enter Engineering" class="client-logo">
       </div>
-      <div class="card text-center" style="--i:7">
-        <img src="uzauto.png" alt="UzAuto Motors" loading="lazy">
+      <div class="card text-center client-logo-card" style="--i:7">
+        <img src="uzauto.png" alt="UzAuto Motors" class="client-logo">
       </div>
     </div>
   </div>
@@ -185,12 +169,20 @@
         <p style="max-width:280px; font-size:14.5px;">Строительство и инженерные системы полного цикла в Узбекистане.</p>
         <div class="footer-social">
           <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.6 3.5 11.7c-1.2.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.5c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.1-2 4.4 3.2c.8.5 1.4.2 1.6-.7l3-14c.3-1.2-.4-1.7-1.3-1.4z"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
         </div>
       </div>
+      <div class="footer-col"><h4>Меню</h4><ul><li><a href="about.html">О компании</a></li><li><a href="services.html">Услуги</a></li><li><a href="projects.html">Проекты</a></li><li><a href="careers.html">Карьера</a></li></ul></div>
+      <div class="footer-col"><h4>Услуги</h4><ul><li><a href="services.html#construction">Строительство</a></li><li><a href="services.html#mep">MEP-системы</a></li><li><a href="services.html">Facility Maintenance</a></li></ul></div>
+      <div class="footer-col"><h4>Контакты</h4><ul><li><a href="tel:+998996173555">+998 99 617 35 55</a></li><li><a href="mailto:info@costabrava.uz">info@costabrava.uz</a></li><li><a href="contact.html">г. Ташкент, Узбекистан</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Costa Brava. Все права защищены.</span></div>
+    <div class="footer-bottom"><span>© 2026 Costa Brava. Все права защищены.</span><span>Строительство · Инжиниринг · Техническое обслуживание</span></div>
   </div>
 </footer>
+
+<button class="to-top" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<a class="wa-float" href="https://wa.me/998996173555" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/></svg></a>
 
 <script src="script.js"></script>
 </body>
