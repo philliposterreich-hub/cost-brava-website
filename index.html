@@ -1,20 +1,293 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Costa Brava — Complete Construction & MEP Solutions</title>
-<meta name="description" content="Costa Brava — Full-cycle construction and engineering company: civil construction, MEP, HVAC, electrical, epoxy flooring, and facility maintenance in Uzbekistan.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230B1F3A%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 fill=%22%23F58220%22 text-anchor=%22middle%22 font-family=%22Poppins,Arial%22 font-weight=%22600%22>C</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Costa Brava — Construction & Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================
+       GLOBAL STYLES & TRANSLATION ENGINE
+       ========================================== */
+    :root {
+      --primary: #0f2249;
+      --orange: #ff7a00;
+      --bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #333333;
+      --text-muted: #6c757d;
+      --border: #eaeaea;
+    }
+
+    [data-theme="dark"] {
+      --primary: #ffffff;
+      --bg: #121212;
+      --card-bg: #1e1e1e;
+      --text: #f0f0f0;
+      --text-muted: #a0a0a0;
+      --border: #2d2d2d;
+    }
+
+    /* Core Translation Mechanism */
+    html[lang="en"] .ru-text { display: none !important; }
+    html[lang="ru"] .en-text { display: none !important; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ==========================================
+       HEADER STYLES
+       ========================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: var(--card-bg);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .brand {
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      background: var(--orange);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a.active, .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Lang Switcher */
+    .lang-switcher {
+      position: relative;
+    }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+
+    .lang-dropdown.show {
+      display: block;
+    }
+
+    .lang-dropdown button {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .lang-dropdown button:hover {
+      background: var(--bg);
+    }
+
+    /* ==========================================
+       HERO & SECTIONS
+       ========================================== */
+    .hero {
+      background: linear-gradient(rgba(15, 34, 73, 0.8), rgba(15, 34, 73, 0.8)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1800&q=80') no-repeat center center/cover;
+      color: white;
+      padding: 150px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .btn {
+      background: var(--orange);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .preview-section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 28px;
+      color: var(--primary);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 30px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 14.5px;
+    }
+
+    /* ==========================================
+       FLOATING ACTIONS & FOOTER
+       ========================================== */
+    .whatsapp-widget {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: #25d366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      z-index: 999;
+      cursor: pointer;
+    }
+
+    .whatsapp-widget svg {
+      width: 32px;
+      height: 32px;
+      fill: white;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      z-index: 999;
+      cursor: pointer;
+      border: none;
+    }
+
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+      stroke: white;
+      fill: none;
+    }
+
+    .site-footer {
+      background: #0f2249;
+      color: #a0b2cb;
+      padding: 60px 0 30px;
+    }
+  </style>
 </head>
 <body>
 
 <header class="site-header">
-  <div class="container">
+  <div class="container header-container">
     <a href="index.html" class="brand"><span class="brand-mark">CB</span>COSTA BRAVA</a>
     <nav class="nav-links">
       <a href="index.html" class="active"><span class="en-text">Home</span><span class="ru-text">Главная</span></a>
@@ -25,457 +298,105 @@
       <a href="contact.html"><span class="en-text">Contact</span><span class="ru-text">Контакты</span></a>
     </nav>
     <div class="header-actions">
-      <!-- Language Switcher -->
       <div class="lang-switcher">
-        <button class="lang-btn" aria-label="Switch language"><span class="current-lang">EN</span> ▼</button>
+        <button class="lang-btn" aria-label="Switch language">
+          <span class="current-lang">EN</span> ▼
+        </button>
         <div class="lang-dropdown">
           <button data-lang="en">English</button>
           <button data-lang="ru">Русский</button>
         </div>
       </div>
-      
-      <button class="theme-toggle" aria-label="Toggle theme">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      </button>
-      <a href="contact.html" class="btn btn-primary" style="padding:12px 22px;">
-        <span class="en-text">Get Quote</span><span class="ru-text">КП</span>
-      </a>
-      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
-<div class="mobile-nav">
-  <a href="index.html" class="active"><span class="en-text">Home</span><span class="ru-text">Главная</span></a>
-  <a href="about.html"><span class="en-text">About</span><span class="ru-text">О компании</span></a>
-  <a href="services.html"><span class="en-text">Services</span><span class="ru-text">Услуги</span></a>
-  <a href="clients.html"><span class="en-text">Clients</span><span class="ru-text">Клиенты</span></a>
-  <a href="careers.html"><span class="en-text">Careers</span><span class="ru-text">Карьера</span></a>
-  <a href="contact.html"><span class="en-text">Contact</span><span class="ru-text">Контакты</span></a>
+<section class="hero">
+  <div class="container">
+    <h1>
+      <span class="en-text">Industrial Engineering & Construction</span>
+      <span class="ru-text">Промышленный инжиниринг и строительство</span>
+    </h1>
+    <p>
+      <span class="en-text">Providing world-class structural civil construction and MEP networks in Tashkent.</span>
+      <span class="ru-text">Обеспечиваем высококлассное гражданское строительство и сети MEP в Ташкенте.</span>
+    </p>
+    <a href="services.html" class="btn">
+      <span class="en-text">View Services</span><span class="ru-text">Наши услуги</span>
+    </a>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS PREVIEW -->
+<section class="container preview-section">
+  <h2 class="section-title">
+    <span class="en-text">Key Capabilities</span>
+    <span class="ru-text">Ключевые возможности</span>
+  </h2>
+  
+  <div class="grid-3">
+    <!-- Card 1 -->
+    <div class="card">
+      <h3>
+        <span class="en-text">Civil Construction</span>
+        <span class="ru-text">Гражданское строительство</span>
+      </h3>
+      <p>
+        <span class="en-text">Construction of commercial and industrial frames from the ground up.</span>
+        <span class="ru-text">Строительство коммерческих и промышленных каркасов с нуля.</span>
+      </p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <h3>
+        <span class="en-text">HVAC Systems</span>
+        <span class="ru-text">Системы ОВК</span>
+      </h3>
+      <p>
+        <span class="en-text">Installation of complex high-efficiency ventilation, heat pumps, and duct paths.</span>
+        <span class="ru-text">Монтаж сложных высокоэффективных систем вентиляции, тепловых насосов и воздуховодов.</span>
+      </p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <h3>
+        <span class="en-text">Electrical Works</span>
+        <span class="ru-text">Электромонтажные работы</span>
+      </h3>
+      <p>
+        <span class="en-text">Industrial electrical systems setup, automated breaker structures, and cable ways.</span>
+        <span class="ru-text">Устройство промышленных электрических систем, распределительных щитов и кабель-каналов.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WIDGETS -->
+<div class="whatsapp-widget" onclick="window.open('https://wa.me/998996173555')">
+  <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.488 1.449 5.412 1.451 5.428 0 9.845-4.394 9.848-9.793.001-2.615-1.011-5.074-2.852-6.918C17.207 2.052 14.75 1.037 12.14 1.037c-5.433 0-9.85 4.394-9.853 9.792-.001 1.986.517 3.93 1.5 5.64l-.984 3.593 3.684-.966zm10.743-7.416c-.29-.145-1.716-.848-1.98-.942-.266-.096-.459-.145-.653.145-.193.29-.748.942-.917 1.135-.169.193-.338.217-.627.072-2.316-1.161-3.81-2.004-5.328-4.606-.4-.686.4-.637 1.144-2.128.116-.217.058-.41-.029-.555-.087-.145-.748-1.803-1.025-2.467-.27-.649-.546-.56-.748-.57-.193-.01-.41-.012-.627-.012-.217 0-.57.081-.869.41-.299.329-1.143 1.116-1.143 2.72s1.167 3.153 1.328 3.371c.162.217 2.296 3.507 5.562 4.918 2.37.1 3.256-.05 4.05-.124.814-.076 1.716-.701 1.958-1.378.24-.677.24-1.258.17-1.378-.073-.122-.267-.195-.556-.341z"/></svg>
 </div>
 
-<section class="hero">
-  <div class="hero-media">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=75" alt="Construction Site" loading="eager">
-  </div>
-  <div class="hero-ticks" aria-hidden="true">
-    <span style="height:14px;"></span><span style="height:22px;"></span><span style="height:10px;"></span><span style="height:30px;"></span><span style="height:16px;"></span>
-  </div>
-  <div class="container hero-content">
-    <div class="eyebrow reveal in">CONSTRUCTION &amp; ENGINEERING · UZBEKISTAN</div>
-    <h1 class="reveal in">
-      <span class="en-text">Complete Construction &amp; MEP Solutions</span>
-      <span class="ru-text">Комплексные строительные и инженерные решения</span>
-    </h1>
-    <p class="lead reveal in">
-      <span class="en-text">Costa Brava delivers comprehensive construction, engineering and maintenance solutions for industrial, commercial and residential projects across Uzbekistan.</span>
-      <span class="ru-text">Costa Brava предлагает комплексные решения в сфере строительства, инженерии и технического обслуживания для промышленных, коммерческих и жилых проектов по всему Узбекистану.</span>
-    </p>
-    <div class="hero-cta reveal in">
-      <a href="contact.html" class="btn btn-primary">
-        <span class="en-text">Get a Commercial Offer</span>
-        <span class="ru-text">Получить коммерческое предложение</span>
-      </a>
-      <a href="projects.html" class="btn btn-ghost">
-        <span class="en-text">Our Projects</span>
-        <span class="ru-text">Наши проекты</span>
-      </a>
-    </div>
-  </div>
-  <div class="hero-scroll">SCROLL<div class="line"></div></div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="grid-2">
-      <div class="reveal">
-        <div class="bracketed" style="border-radius:6px; overflow:hidden;">
-          <span class="bk bk-tl"></span><span class="bk bk-tr"></span><span class="bk bk-bl"></span><span class="bk bk-br"></span>
-          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=75" alt="Costa Brava Engineers" loading="lazy" style="border-radius:6px;">
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="eyebrow">
-          <span class="en-text">About Costa Brava</span>
-          <span class="ru-text">О компании Costa Brava</span>
-        </div>
-        <h2>
-          <span class="en-text">Reliable Full-Cycle Contractor</span>
-          <span class="ru-text">Надёжный подрядчик полного цикла</span>
-        </h2>
-        <p class="en-text">Costa Brava is a modern construction and engineering company providing a full range of services in construction, MEP Engineering, HVAC, electrical installation, plumbing works, roofing repair, epoxy flooring, facility maintenance, and reconstruction.</p>
-        <p class="ru-text">Costa Brava — современная строительная и инженерная компания, предоставляющая полный комплекс услуг в области строительства, MEP Engineering, HVAC, электромонтажа, сантехнических работ, ремонта кровли, эпоксидных полов, технического обслуживания зданий и реконструкции объектов.</p>
-        
-        <p class="en-text">We work with industrial enterprises, business centers, shopping malls, hotels, warehouses, residential complexes, and government institutions across Uzbekistan.</p>
-        <p class="ru-text">Мы работаем с промышленными предприятиями, бизнес-центрами, торговыми центрами, гостиницами, складами, жилыми комплексами и государственными учреждениями по всему Узбекистану.</p>
-        
-        <a href="about.html" class="btn btn-outline">
-          <span class="en-text">More About Us</span>
-          <span class="ru-text">Подробнее о компании</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section-alt">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">
-          <span class="en-text">Our Services</span>
-          <span class="ru-text">Наши услуги</span>
-        </div>
-        <h2>
-          <span class="en-text">Construction and Engineering Systems Under One Roof</span>
-          <span class="ru-text">Строительство и инженерные системы под одной крышей</span>
-        </h2>
-      </div>
-      <div class="side">
-        <p class="mb-0 en-text">From the foundation to the final commissioning stage — a single team manages the project at every step.</p>
-        <p class="mb-0 ru-text">От фундамента до финального пуско-наладочного этапа — единая команда ведёт проект на каждом шаге.</p>
-      </div>
-    </div>
-
-    <h3 style="margin-bottom:22px; color:var(--orange); letter-spacing:.05em; text-transform:uppercase; font-size:14px;">
-      <span class="en-text">Construction</span>
-      <span class="ru-text">Строительство</span>
-    </h3>
-    <div class="grid-4 reveal reveal-stagger">
-      <div class="card" style="--i:0">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
-        <h3>
-          <span class="en-text">Civil Construction</span>
-          <span class="ru-text">Civil Construction</span>
-        </h3>
-        <p class="en-text">General construction works of any complexity — from industrial to commercial facilities.</p>
-        <p class="ru-text">Общестроительные работы любой сложности — от промышленных до коммерческих объектов.</p>
-      </div>
-      <div class="card" style="--i:1">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 21V9"/></svg></div>
-        <h3>
-          <span class="en-text">Building Renovation &amp; Fit-Out</span>
-          <span class="ru-text">Building Renovation &amp; Fit-Out</span>
-        </h3>
-        <p class="en-text">Turnkey facility reconstruction and finishing while maintaining strict deadlines.</p>
-        <p class="ru-text">Реконструкция и отделка помещений под ключ с сохранением сроков сдачи.</p>
-      </div>
-      <div class="card" style="--i:2">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 15l4-8 4 5 3-4 7 7"/><path d="M3 19h18"/></svg></div>
-        <h3>
-          <span class="en-text">Roofing &amp; Waterproofing</span>
-          <span class="ru-text">Roofing &amp; Waterproofing</span>
-        </h3>
-        <p class="en-text">Roof repair and waterproofing solutions for industrial and commercial buildings.</p>
-        <p class="ru-text">Ремонт кровли и гидроизоляция для промышленных и коммерческих зданий.</p>
-      </div>
-      <div class="card" style="--i:3">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
-        <h3>
-          <span class="en-text">Epoxy &amp; Industrial Flooring</span>
-          <span class="ru-text">Epoxy &amp; Industrial Flooring</span>
-        </h3>
-        <p class="en-text">Self-leveling industrial floors designed for factories, warehouses, and production areas.</p>
-        <p class="ru-text">Промышленные наливные полы для заводов, складов и производств.</p>
-      </div>
-    </div>
-
-    <h3 style="margin:52px 0 22px; color:var(--orange); letter-spacing:.05em; text-transform:uppercase; font-size:14px;">
-      <span class="en-text">MEP Engineering</span>
-      <span class="ru-text">Инженерные системы (MEP)</span>
-    </h3>
-    <div class="grid-4 reveal reveal-stagger">
-      <div class="card" style="--i:0">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></div>
-        <h3>
-          <span class="en-text">HVAC Systems</span>
-          <span class="ru-text">HVAC Systems</span>
-        </h3>
-        <p class="en-text">Design, installation, and commissioning of comprehensive ventilation and air conditioning systems.</p>
-        <p class="ru-text">Проектирование и монтаж систем вентиляции и кондиционирования.</p>
-      </div>
-      <div class="card" style="--i:1">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
-        <h3>
-          <span class="en-text">Electrical Works</span>
-          <span class="ru-text">Electrical Works</span>
-        </h3>
-        <p class="en-text">Full cycle of electrical installation, distribution boards, and power networking.</p>
-        <p class="ru-text">Полный цикл электромонтажных работ и распределительных систем.</p>
-      </div>
-      <div class="card" style="--i:2">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h16M4 12h10a4 4 0 0 1 0 8H9"/></svg></div>
-        <h3>
-          <span class="en-text">Plumbing &amp; Drainage</span>
-          <span class="ru-text">Plumbing &amp; Drainage</span>
-        </h3>
-        <p class="en-text">Sanitary networks, domestic water supply, and complete drainage solutions.</p>
-        <p class="ru-text">Сантехнические сети, водоснабжение и системы водоотведения.</p>
-      </div>
-      <div class="card" style="--i:3">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg></div>
-        <h3>
-          <span class="en-text">Fire Fighting &amp; Fire Alarm Systems</span>
-          <span class="ru-text">Fire Fighting Systems</span>
-        </h3>
-        <p class="en-text">Automated fire suppression and advanced alarm systems meeting international safety standards.</p>
-        <p class="ru-text">Системы пожаротушения и пожарной сигнализации по международным нормам.</p>
-      </div>
-      <div class="card" style="--i:4">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V4h8v3"/></svg></div>
-        <h3>
-          <span class="en-text">Low Current Systems</span>
-          <span class="ru-text">Low Current Systems</span>
-        </h3>
-        <p class="en-text">CCTV, Access Control, Networking, and structured cabling integration.</p>
-        <p class="ru-text">CCTV, контроль доступа, структурированные кабельные сети.</p>
-      </div>
-      <div class="card" style="--i:5">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 3v9l6 3"/></svg></div>
-        <h3>
-          <span class="en-text">Facility Maintenance</span>
-          <span class="ru-text">Facility Maintenance</span>
-        </h3>
-        <p class="en-text">Planned preventive and emergency technical maintenance of building systems 24/7.</p>
-        <p class="ru-text">Плановое и аварийное техническое обслуживание зданий 24/7.</p>
-      </div>
-    </div>
-    <div class="text-center mt-lg reveal">
-      <a href="services.html" class="btn btn-outline">
-        <span class="en-text">All Services</span>
-        <span class="ru-text">Все услуги</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="stats-band">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat reveal"><div class="num" data-count="150"><span class="suffix">+</span></div><div class="label"><span class="en-text">Completed Projects</span><span class="ru-text">Выполненных проектов</span></div></div>
-      <div class="stat reveal"><div class="num" data-count="30"><span class="suffix">+</span></div><div class="label"><span class="en-text">Engineers</span><span class="ru-text">Инженеров</span></div></div>
-      <div class="stat reveal"><div class="num" data-count="10"><span class="suffix">+</span></div><div class="label"><span class="en-text">Years of Experience</span><span class="ru-text">Лет опыта</span></div></div>
-      <div class="stat reveal"><div class="num" data-count="24">/7</div><div class="label"><span class="en-text">Technical Support</span><span class="ru-text">Техническая поддержка</span></div></div>
-      <div class="stat reveal"><div class="num" data-count="100"><span class="suffix">%</span></div><div class="label"><span class="en-text">Quality Guarantee</span><span class="ru-text">Гарантия качества</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">
-          <span class="en-text">Why Choose Us</span>
-          <span class="ru-text">Почему выбирают нас</span>
-        </div>
-        <h2>
-          <span class="en-text">Standards of an International Contractor</span>
-          <span class="ru-text">Стандарты международного подрядчика</span>
-        </h2>
-      </div>
-    </div>
-    <div class="adv-list reveal reveal-stagger">
-      <div class="adv-item" style="--i:0"><span class="num">01</span><div><h4><span class="en-text">Experienced Engineers</span><span class="ru-text">Опытные инженеры</span></h4><p><span class="en-text">A team with years of experience delivering complex engineering projects.</span><span class="ru-text">Команда с многолетним опытом реализации сложных инженерных проектов.</span></p></div></div>
-      <div class="adv-item" style="--i:1"><span class="num">02</span><div><h4><span class="en-text">International Standards</span><span class="ru-text">Международные стандарты</span></h4><p><span class="en-text">Operations strictly align with international quality and safety norms.</span><span class="ru-text">Работа по международным нормам качества и безопасности.</span></p></div></div>
-      <div class="adv-item" style="--i:2"><span class="num">03</span><div><h4><span class="en-text">Qualified Team</span><span class="ru-text">Квалифицированная команда</span></h4><p><span class="en-text">Certified professionals covering all MEP disciplines.</span><span class="ru-text">Сертифицированные специалисты по всем направлениям MEP.</span></p></div></div>
-      <div class="adv-item" style="--i:3"><span class="num">04</span><div><h4><span class="en-text">Premium Materials</span><span class="ru-text">Высокое качество материалов</span></h4><p><span class="en-text">We utilize materials and equipment exclusively from trusted global brands.</span><span class="ru-text">Используем материалы и оборудование от проверенных мировых брендов.</span></p></div></div>
-      <div class="adv-item" style="--i:4"><span class="num">05</span><div><h4><span class="en-text">Strict Timelines</span><span class="ru-text">Соблюдение сроков</span></h4><p><span class="en-text">Precise planning and tight control at every stage of the project.</span><span class="ru-text">Чёткое планирование и контроль на каждом этапе проекта.</span></p></div></div>
-      <div class="adv-item" style="--i:5"><span class="num">06</span><div><h4><span class="en-text">Site Safety</span><span class="ru-text">Безопасность на объекте</span></h4><p><span class="en-text">Rigorous occupational health and safety protocols across all sites.</span><span class="ru-text">Строгие протоколы охраны труда на всех строительных площадках.</span></p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="section-alt">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">
-          <span class="en-text">Industries</span>
-          <span class="ru-text">Отрасли</span>
-        </div>
-        <h2>
-          <span class="en-text">We Operate Across All Sectors</span>
-          <span class="ru-text">Работаем со всеми типами объектов</span>
-        </h2>
-      </div>
-    </div>
-    <div class="grid-4 reveal reveal-stagger" style="grid-template-columns:repeat(5,1fr);">
-      <div class="industry-card" style="--i:0"><div class="icon" style="margin:0 auto 14px; width:44px; height:44px; background:transparent; color:var(--orange);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21V9l6-4 6 4v12M9 21v-6h6v6M15 21V9l6 4v8"/></svg></div><h4><span class="en-text">Industrial Plants</span><span class="ru-text">Промышленные предприятия</span></h4></div>
-      <div class="industry-card" style="--i:1"><div class="icon" style="margin:0 auto 14px; width:44px; height:44px; background:transparent; color:var(--orange);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 21h20M4 21V8l5-3 5 3v13M13 21V11l5-2 3 2v10"/></svg></div><h4><span class="en-text">Factories</span><span class="ru-text">Заводы</span></h4></div>
-      <div class="industry-card" style="--i:2"><div class="icon" style="margin:0 auto 14px; width:44px; height:44px; background:transparent; color:var(--orange);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9l9-6 9 6M4 10v10h16V10"/></svg></div><h4><span class="en-text">Warehouses</span><span class="ru-text">Склады</span></h4></div>
-      <div class="industry-card" style="--i:3"><div class="icon" style="margin:0 auto 14px; width:44px; height:44px; background:transparent; color:var(--orange);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"/></svg></div><h4><span class="en-text">Business Centers</span><span class="ru-text">Бизнес-центры</span></h4></div>
-      <div class="industry-card" style="--i:4"><div class="icon" style="margin:0 auto 14px; width:44px; height:44px; background:transparent; color:var(--orange);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18M5 21V10h14v11M9 21v-5h6v5"/></svg></div><h4><span class="en-text">Shopping Malls</span><span class="ru-text">Торговые центры</span></h4></div>
-      <div class="industry-card" style="--i:5"><div class="icon" style="margin:0 auto 14px; width:44px; height:44px; background:transparent; color:var(--orange);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 21V6l8-3 8 3v15M9 21v-4h6v4M8 10h1M8 14h1M15 10h1M15 14h1"/></svg></div><h4><span class="en-text">Hotels</span><span class="ru-text">Гостиницы</span></h4></div>
-      <div class="industry-card" style="--i:6"><div class="icon" style="margin:0 auto 14px; width:44px; height:44px; background:transparent; color:var(--orange);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v20M4 8h16M8 4v4M16 4v4M6 12h4v8H6zM14 12h4v8h-4z"/></svg></div><h4><span class="en-text">Hospitals</span><span class="ru-text">Больницы</span></h4></div>
-      <div class="industry-card" style="--i:7"><div class="icon" style="margin:0 auto 14px; width:44px; height:44px; background:transparent; color:var(--orange);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="10" width="18" height="11" rx="1"/><path d="M3 10l9-7 9 7M9 21v-5h6v5"/></svg></div><h4><span class="en-text">Banks</span><span class="ru-text">Банки</span></h4></div>
-      <div class="industry-card" style="--i:8"><div class="icon" style="margin:0 auto 14px; width:44px; height:44px; background:transparent; color:var(--orange);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21V9l6-5 6 5v12M9 21v-6h6v6M15 21V13l6-3v11"/></svg></div><h4><span class="en-text">Residential Complexes</span><span class="ru-text">Жилые комплексы</span></h4></div>
-      <div class="industry-card" style="--i:9"><div class="icon" style="margin:0 auto 14px; width:44px; height:44px; background:transparent; color:var(--orange);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 21V4h16v17M9 8h1M14 8h1M9 12h1M14 12h1M4 21h16"/></svg></div><h4><span class="en-text">Gov. Institutions</span><span class="ru-text">Гос. учреждения</span></h4></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">
-          <span class="en-text">Projects</span>
-          <span class="ru-text">Проекты</span>
-        </div>
-        <h2>
-          <span class="en-text">Featured Completed Facilities</span>
-          <span class="ru-text">Избранные реализованные объекты</span>
-        </h2>
-      </div>
-      <div class="side">
-        <a href="projects.html" class="btn btn-outline">
-          <span class="en-text">All Projects</span>
-          <span class="ru-text">Все проекты</span>
-        </a>
-      </div>
-    </div>
-    <div class="grid-4 reveal reveal-stagger">
-      <div class="project-card" style="--i:0"><img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=700&q=75" alt="Coca-Cola Uzbekistan" loading="lazy"><div class="overlay"><span class="tag"><span class="en-text">Engineering Works</span><span class="ru-text">Инженерные работы</span></span><h3>Coca-Cola Uzbekistan</h3></div></div>
-      <div class="project-card" style="--i:1"><img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=700&q=75" alt="Golden House" loading="lazy"><div class="overlay"><span class="tag"><span class="en-text">Electrical Installation</span><span class="ru-text">Электромонтаж</span></span><h3>Golden House</h3></div></div>
-      <div class="project-card" style="--i:2"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=700&q=75" alt="Soda Zavodi" loading="lazy"><div class="overlay"><span class="tag"><span class="en-text">Epoxy Flooring</span><span class="ru-text">Эпоксидные полы</span></span><h3>Qo‘ng‘irot Soda Zavodi</h3></div></div>
-      <div class="project-card" style="--i:3"><img src="https://images.unsplash.com/photo-1590959651373-a3db0f38a961?auto=format&fit=crop&w=700&q=75" alt="Facility Renovation" loading="lazy"><div class="overlay"><span class="tag"><span class="en-text">HVAC · Roofing</span><span class="ru-text">HVAC · Ремонт кровли</span></span><h3><span class="en-text">Facility Renovation</span><span class="ru-text">Капитальный ремонт объекта</span></h3></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="section-alt">
-  <div class="container">
-    <div class="text-center reveal" style="max-width:600px; margin: 0 auto;">
-      <div class="eyebrow" style="justify-content:center;">
-        <span class="en-text">Trusted By</span>
-        <span class="ru-text">Нам доверяют</span>
-      </div>
-      <h2>
-        <span class="en-text">Clients We Grow With</span>
-        <span class="ru-text">Клиенты, которые с нами растут</span>
-      </h2>
-    </div>
-  </div>
-  <div class="logo-strip reveal mt-lg">
-    <div class="logo-track">
-      <span class="logo-item"><span class="dot"></span>Coca-Cola Uzbekistan</span>
-      <span class="logo-item"><span class="dot"></span>Golden House</span>
-      <span class="logo-item"><span class="dot"></span>Qo‘ng‘irot Soda Zavodi</span>
-      <span class="logo-item"><span class="dot"></span>AKFA</span>
-      <span class="logo-item"><span class="dot"></span>Artel</span>
-      <span class="logo-item"><span class="dot"></span>Murad Buildings</span>
-      <span class="logo-item"><span class="dot"></span>Enter Engineering</span>
-      <span class="logo-item"><span class="dot"></span>UzAuto Motors</span>
-      <!-- duplicate for seamless loop -->
-      <span class="logo-item"><span class="dot"></span>Coca-Cola Uzbekistan</span>
-      <span class="logo-item"><span class="dot"></span>Golden House</span>
-      <span class="logo-item"><span class="dot"></span>Qo‘ng‘irot Soda Zavodi</span>
-      <span class="logo-item"><span class="dot"></span>AKFA</span>
-      <span class="logo-item"><span class="dot"></span>Artel</span>
-      <span class="logo-item"><span class="dot"></span>Murad Buildings</span>
-      <span class="logo-item"><span class="dot"></span>Enter Engineering</span>
-      <span class="logo-item"><span class="dot"></span>UzAuto Motors</span>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="text-center reveal" style="max-width:600px; margin: 0 auto 40px;">
-      <div class="eyebrow" style="justify-content:center;">
-        <span class="en-text">Partners</span>
-        <span class="ru-text">Партнёры</span>
-      </div>
-      <h2>
-        <span class="en-text">Global Manufacturer Partnerships</span>
-        <span class="ru-text">Работаем с мировыми производителями</span>
-      </h2>
-    </div>
-    <div class="logo-strip reveal">
-      <div class="logo-track" style="animation-direction:reverse;">
-        <span class="logo-item">Sika</span><span class="logo-item">BASF</span><span class="logo-item">Schneider Electric</span><span class="logo-item">ABB</span><span class="logo-item">Legrand</span><span class="logo-item">Daikin</span><span class="logo-item">LG</span><span class="logo-item">Tikkurila</span>
-        <span class="logo-item">Sika</span><span class="logo-item">BASF</span><span class="logo-item">Schneider Electric</span><span class="logo-item">ABB</span><span class="logo-item">Legrand</span><span class="logo-item">Daikin</span><span class="logo-item">LG</span><span class="logo-item">Tikkurila</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-banner">
-  <div class="container">
-    <div class="reveal">
-      <h2>
-        <span class="en-text">Ready to Discuss Your Project?</span>
-        <span class="ru-text">Готовы обсудить ваш проект?</span>
-      </h2>
-      <div class="btn-row">
-        <a href="contact.html" class="btn btn-primary">
-          <span class="en-text">Get a Consultation</span>
-          <span class="ru-text">Получить консультацию</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
 
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="brand"><span class="brand-mark">CB</span>COSTA BRAVA</a>
-        <p style="max-width:280px; font-size:14.5px;">
-          <span class="en-text">Full-cycle construction and engineering systems in Uzbekistan.</span>
-          <span class="ru-text">Строительство и инженерные системы полного цикла в Узбекистане.</span>
-        </p>
-        <div class="footer-social">
-          <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.6 3.5 11.7c-1.2.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.5c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.1-2 4.4 3.2c.8.5 1.4.2 1.6-.7l3-14c.3-1.2-.4-1.7-1.3-1.4z"/></svg></a>
-          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/></svg></a>
-          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4><span class="en-text">Menu</span><span class="ru-text">Меню</span></h4>
-        <ul>
-          <li><a href="about.html"><span class="en-text">About</span><span class="ru-text">О компании</span></a></li>
-          <li><a href="services.html"><span class="en-text">Services</span><span class="ru-text">Услуги</span></a></li>
-          <li><a href="projects.html"><span class="en-text">Projects</span><span class="ru-text">Проекты</span></a></li>
-          <li><a href="careers.html"><span class="en-text">Careers</span><span class="ru-text">Карьера</span></a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4><span class="en-text">Services</span><span class="ru-text">Услуги</span></h4>
-        <ul>
-          <li><a href="services.html">Civil Construction</a></li>
-          <li><a href="services.html">HVAC Systems</a></li>
-          <li><a href="services.html">Electrical Works</a></li>
-          <li><a href="services.html">Facility Maintenance</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4><span class="en-text">Contact</span><span class="ru-text">Контакты</span></h4>
-        <ul>
-          <li><a href="tel:+998996173555">+998 99 617 35 55</a></li>
-          <li><a href="mailto:info@costabrava.uz">info@costabrava.uz</a></li>
-          <li><a href="contact.html"><span class="en-text">Tashkent, Uzbekistan</span><span class="ru-text">г. Ташкент, Узбекистан</span></a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span><span class="en-text">© 2026 Costa Brava. All rights reserved.</span><span class="ru-text">© 2026 Costa Brava. Все права защищены.</span></span>
-      <span><span class="en-text">Construction · Engineering · Maintenance</span><span class="ru-text">Строительство · Инжиниринг · Техническое обслуживание</span></span>
-    </div>
+    <p>© 2026 Costa Brava. All rights reserved.</p>
   </div>
 </footer>
 
-<button class="to-top" aria-label="Scroll to top">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</button>
-
-<a class="wa-float" href="https://wa.me/998996173555" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/></svg>
-</a>
-
 <script src="script.js"></script>
+<script>
+  document.querySelector('.lang-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.querySelector('.lang-dropdown').classList.toggle('show');
+  });
+  document.addEventListener('click', () => {
+    document.querySelector('.lang-dropdown').classList.remove('show');
+  });
+</script>
 </body>
 </html>
