@@ -122,89 +122,34 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // =====================================================================
-// MULTILINGUAL TRANSLATION ENGINE (ADDED)
 // =====================================================================
-const translations = {
-  en: {
-    nav_home: "Home",
-    nav_about: "About",
-    nav_services: "Services",
-    nav_clients: "Clients",
-    nav_careers: "Careers",
-    nav_contact: "Contact",
-    btn_quote: "Get Quote",
-    hero_title: "Complete Construction & MEP Solutions",
-    hero_subtitle: "Costa Brava delivers comprehensive construction, engineering and maintenance solutions for industrial, commercial and residential projects across Uzbekistan.",
-    hero_btn1: "Get a Commercial Offer",
-    hero_btn2: "Our Projects",
-    careers_title: "Build the Future with Us",
-    careers_sub: "We are growing a team of engineers and builders setting quality standards in Uzbekistan.",
-    service_construction: "Construction",
-    service_civil: "Civil Construction",
-    service_renovation: "Building Renovation & Fit-Out",
-    service_roofing: "Roofing & Waterproofing",
-    service_flooring: "Epoxy & Industrial Flooring",
-    service_mep: "MEP Engineering",
-    service_hvac: "HVAC Systems",
-    service_electrical: "Electrical Works",
-    service_plumbing: "Plumbing & Drainage",
-    service_fire: "Fire Fighting & Fire Alarm Systems",
-    service_low_current: "Low Current Systems",
-    service_maintenance: "Facility Maintenance"
-  },
-  ru: {
-    nav_home: "Главная",
-    nav_about: "О компании",
-    nav_services: "Услуги",
-    nav_clients: "Клиенты",
-    nav_careers: "Карьера",
-    nav_contact: "Контакты",
-    btn_quote: "КП",
-    hero_title: "Комплексные строительные и инженерные решения",
-    hero_subtitle: "Costa Brava предлагает комплексные решения в сфере строительства, инженерии и технического обслуживания по всему Узбекистану.",
-    hero_btn1: "Получить коммерческое предложение",
-    hero_btn2: "Наши проекты",
-    careers_title: "Стройте будущее вместе с нами",
-    careers_sub: "Мы растим команду инженеров и строителей, которые задают стандарты качества в Узбекистане.",
-    service_construction: "Строительство",
-    service_civil: "Гражданское строительство",
-    service_renovation: "Реконструкция и отделка",
-    service_roofing: "Кровельные и гидроизоляционные работы",
-    service_flooring: "Эпоксидные и промышленные полы",
-    service_mep: "Инженерные системы (MEP)",
-    service_hvac: "Системы ОВК",
-    service_electrical: "Электромонтажные работы",
-    service_plumbing: "Водоснабжение и канализация",
-    service_fire: "Системы пожаротушения",
-    service_low_current: "Слаботочные системы",
-    service_maintenance: "Техническое обслуживание"
-  }
-};
-
+// MULTILINGUAL TOGGLE ENGINE (FIXED)
+// =====================================================================
 document.addEventListener("DOMContentLoaded", () => {
+  // 1. Get saved language or default to English
   let currentLang = localStorage.getItem("cb-lang") || "en";
   
-  function updateLanguage(lang) {
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-      const key = el.getAttribute("data-i18n");
-      if (translations[lang] && translations[lang][key]) {
-        el.textContent = translations[lang][key];
-      }
-    });
+  // 2. Function to update the page language
+  function setLanguage(lang) {
+    // Update the html tag attribute so the CSS can hide/show the right spans
+    document.documentElement.setAttribute("lang", lang);
     
-    const langDisplay = document.getElementById("current-lang-display");
+    // Update the display text on the main language button
+    const langDisplay = document.querySelector(".current-lang");
     if (langDisplay) {
       langDisplay.textContent = lang === "en" ? "EN" : "RU";
     }
   }
 
-  updateLanguage(currentLang);
+  // Apply the language on initial load
+  setLanguage(currentLang);
 
-  const langToggleBtn = document.querySelector('.lang-toggle-btn');
+  // 3. Handle the dropdown visibility
+  const langBtn = document.querySelector('.lang-btn');
   const langDropdown = document.querySelector('.lang-dropdown');
   
-  if (langToggleBtn && langDropdown) {
-    langToggleBtn.addEventListener('click', (e) => {
+  if (langBtn && langDropdown) {
+    langBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       langDropdown.classList.toggle('show');
     });
@@ -214,11 +159,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  document.querySelectorAll("[data-lang-switch]").forEach(btn => {
+  // 4. Handle language switching when a dropdown button is clicked
+  document.querySelectorAll("[data-lang]").forEach(btn => {
     btn.addEventListener("click", (e) => {
-      const selectedLang = e.target.getAttribute("data-lang-switch");
+      const selectedLang = e.target.getAttribute("data-lang");
+      
+      // Save preference and update page
       localStorage.setItem("cb-lang", selectedLang);
-      updateLanguage(selectedLang);
+      setLanguage(selectedLang);
+      
+      // Close the dropdown
+      if (langDropdown) langDropdown.classList.remove('show');
     });
   });
 });
