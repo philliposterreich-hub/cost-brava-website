@@ -214,7 +214,7 @@
       position: relative;
     }
 
-    .card:hover, .card.active-state {
+    .card:hover {
       border-color: var(--orange);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       transform: translateY(-5px);
@@ -441,7 +441,7 @@
     </div>
 
     <!-- Card 2 -->
-    <div class="card active-state">
+    <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg>
       </div>
@@ -523,10 +523,15 @@
         <span class="en-text">Heating, ventilation, and air conditioning for buildings of any purpose.</span>
         <span class="ru-text">Отопление, вентиляция и кондиционирование для зданий любого назначения.</span>
       </p>
+      <ul>
+        <li><span class="en-text">Heating & Boiler Plants</span><span class="ru-text">Отопительные установки</span></li>
+        <li><span class="en-text">Ventilation & Air Conditioning</span><span class="ru-text">Вентиляция и кондиционирование</span></li>
+        <li><span class="en-text">Chiller & Fan Coil Units</span><span class="ru-text">Чиллеры и фанкойлы</span></li>
+      </ul>
     </div>
 
     <!-- Card 2 -->
-    <div class="card active-state">
+    <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       </div>
@@ -538,6 +543,11 @@
         <span class="en-text">Electrical installation, custom breaker panels, low-voltage and power networks.</span>
         <span class="ru-text">Электромонтаж, распределительные щиты, слаботочные и силовые сети.</span>
       </p>
+      <ul>
+        <li><span class="en-text">Power Distribution Setup</span><span class="ru-text">Распределение электроэнергии</span></li>
+        <li><span class="en-text">Indoor & Outdoor Lighting</span><span class="ru-text">Внутреннее и наружное освещение</span></li>
+        <li><span class="en-text">Switchboards & Panels</span><span class="ru-text">Распределительные щиты</span></li>
+      </ul>
     </div>
 
     <!-- Card 3 -->
@@ -553,6 +563,11 @@
         <span class="en-text">Water supply, sewerage, and storm drainage network integration.</span>
         <span class="ru-text">Системы водоснабжения, канализации и ливневой отвод.</span>
       </p>
+      <ul>
+        <li><span class="en-text">Water Supply Networks</span><span class="ru-text">Сети водоснабжения</span></li>
+        <li><span class="en-text">Sewerage & Storm Drains</span><span class="ru-text">Канализация и ливневая система</span></li>
+        <li><span class="en-text">Filtration Stations</span><span class="ru-text">Фильтрация и насосные станции</span></li>
+      </ul>
     </div>
 
     <!-- Card 4 -->
@@ -561,13 +576,18 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
       </div>
       <h3>
-        <span class="en-text">Fire Fighting & Fire Alarm Systems</span>
-        <span class="ru-text">Системы пожаротушения и сигнализации</span>
+        <span class="en-text">Fire Fighting & Alarms</span>
+        <span class="ru-text">Системы пожаротушения</span>
       </h3>
       <p>
         <span class="en-text">Automatic fire suppression, hazard alerts, smoke removal, and warning alarms.</span>
         <span class="ru-text">Автоматическое пожаротушение, сигнализация, дымоудаление и оповещение.</span>
       </p>
+      <ul>
+        <li><span class="en-text">Sprinkler & Hose Systems</span><span class="ru-text">Спринклерные системы</span></li>
+        <li><span class="en-text">Smoke Exhaust Systems</span><span class="ru-text">Системы дымоудаления</span></li>
+        <li><span class="en-text">Hazard Warning Alerts</span><span class="ru-text">Оповещение о пожаре</span></li>
+      </ul>
     </div>
 
     <!-- Card 5 -->
@@ -576,13 +596,18 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
       </div>
       <h3>
-        <span class="en-text">Low Current Systems (CCTV, Access Control & Networking)</span>
-        <span class="ru-text">Слаботочные системы (Видеонаблюдение, СКУД и ЛВС)</span>
+        <span class="en-text">Low Current Systems</span>
+        <span class="ru-text">Слаботочные системы</span>
       </h3>
       <p>
         <span class="en-text">CCTV, access control security gates, structured cabling, and intercom networks.</span>
         <span class="ru-text">Видеонаблюдение, системы контроля доступа (СКУД) и структурированные кабельные сети.</span>
       </p>
+      <ul>
+        <li><span class="en-text">IP CCTV Security</span><span class="ru-text">IP-видеонаблюдение</span></li>
+        <li><span class="en-text">Access Control (ACS)</span><span class="ru-text">Контроль доступа (СКУД)</span></li>
+        <li><span class="en-text">Structured Cabling (SCS)</span><span class="ru-text">Структурированные кабельные сети</span></li>
+      </ul>
     </div>
 
     <!-- Card 6 -->
@@ -592,12 +617,17 @@
       </div>
       <h3>
         <span class="en-text">Facility Maintenance</span>
-        <span class="ru-text">Техническое обслуживание объектов</span>
+        <span class="ru-text">Техническое обслуживание</span>
       </h3>
       <p>
         <span class="en-text">Scheduled and emergency 24/7 maintenance of building engineering systems.</span>
         <span class="ru-text">Плановое и аварийное обслуживание инженерных систем зданий 24/7.</span>
       </p>
+      <ul>
+        <li><span class="en-text">24/7 Emergency Support</span><span class="ru-text">Аварийная служба 24/7</span></li>
+        <li><span class="en-text">Preventive Diagnostics</span><span class="ru-text">Профилактическая диагностика</span></li>
+        <li><span class="en-text">Equipment Modernization</span><span class="ru-text">Модернизация оборудования</span></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -652,8 +682,18 @@
     e.stopPropagation();
     document.querySelector('.lang-dropdown').classList.toggle('show');
   });
+
   document.addEventListener('click', () => {
     document.querySelector('.lang-dropdown').classList.remove('show');
+  });
+
+  // Translation handler: Sets language attribute & replaces header label text
+  document.querySelectorAll('.lang-dropdown button').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const selectedLang = e.target.getAttribute('data-lang');
+      document.documentElement.setAttribute('lang', selectedLang);
+      document.querySelector('.current-lang').textContent = selectedLang.toUpperCase();
+    });
   });
 </script>
 </body>
