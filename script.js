@@ -1,175 +1,130 @@
-// ============ COSTA BRAVA — shared behaviors ============
+document.addEventListener("DOMContentLoaded", () => {
+  // --- 1. THEME TOGGLE (LIGHT / DARK) ---
+  const themeToggleBtn = document.querySelector(".theme-toggle");
+  const currentTheme = localStorage.getItem("theme") || "light";
 
-/* Theme Initialization */
-(function initTheme(){
-  const saved = localStorage.getItem('cb-theme');
-  const theme = saved || 'light';
-  document.documentElement.setAttribute('data-theme', theme);
-})();
+  // Set initial theme
+  document.documentElement.setAttribute("data-theme", currentTheme);
 
-document.addEventListener('DOMContentLoaded', () => {
-
-  /* ---- Theme toggle ---- */
-  const themeBtn = document.querySelector('.theme-toggle');
-  if(themeBtn){
-    themeBtn.addEventListener('click', () => {
-      const cur = document.documentElement.getAttribute('data-theme');
-      const next = cur === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('cb-theme', next);
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const activeTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = activeTheme === "light" ? "dark" : "light";
+      
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
     });
   }
 
-  /* ---- Header solid on scroll ---- */
-  const header = document.querySelector('.site-header');
-  const onScrollHeader = () => {
-    if(!header) return;
-    if(window.scrollY > 60) header.classList.add('solid');
-    else header.classList.remove('solid');
-  };
-  onScrollHeader();
-  window.addEventListener('scroll', onScrollHeader, { passive:true });
+  // --- 2. LANGUAGE SWITCHER LOGIC ---
+  const langBtn = document.querySelector(".lang-btn");
+  const langDropdown = document.querySelector(".lang-dropdown");
+  const currentLang = localStorage.getItem("lang") || "en";
 
-  /* ---- Mobile nav ---- */
-  const burger = document.querySelector('.burger');
-  const mobileNav = document.querySelector('.mobile-nav');
-  if(burger && mobileNav){
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
-      mobileNav.classList.toggle('open');
-      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  // Set initial language on load
+  setLanguage(currentLang);
+
+  // Toggle Language Dropdown menu
+  if (langBtn && langDropdown) {
+    langBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      langDropdown.classList.toggle("show");
     });
-    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      burger.classList.remove('open');
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
-    }));
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", () => {
+      langDropdown.classList.remove("show");
+    });
   }
 
-  /* ---- Scroll reveal ---- */
-  const revealEls = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(el => io.observe(el));
-  } else {
-    revealEls.forEach(el => el.classList.add('in'));
-  }
-
-  /* ---- Animated counters ---- */
-  const counters = document.querySelectorAll('.stat .num');
-  const animateCounter = (el) => {
-    const target = parseFloat(el.dataset.count);
-    if(isNaN(target)) return;
-    const suffixEl = el.querySelector('.suffix');
-    const suffix = suffixEl ? suffixEl.outerHTML : '';
-    const duration = 1600;
-    const start = performance.now();
-    const step = (now) => {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      const val = Math.round(target * eased);
-      el.innerHTML = val + suffix;
-      if(p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
-  if('IntersectionObserver' in window && counters.length){
-    const cIo = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          animateCounter(entry.target);
-          cIo.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
-    counters.forEach(el => cIo.observe(el));
-  }
-
-  /* ---- Back to top ---- */
-  const toTop = document.querySelector('.to-top');
-  if(toTop){
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 700) toTop.classList.add('show');
-      else toTop.classList.remove('show');
-    }, { passive:true });
-    toTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
-  }
-
-  /* ---- Forms: client-side validation + success state ---- */
-  document.querySelectorAll('form[data-cb-form]').forEach(form => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if(!form.checkValidity()){
-        form.reportValidity();
-        return;
-      }
-      const success = form.parentElement.querySelector('.form-success') || document.getElementById('form-success');
-      form.reset();
-      if(success){
-        success.classList.add('show');
-        success.scrollIntoView({ behavior:'smooth', block:'center' });
-      }
+  // Handle language selection
+  const langOptions = document.querySelectorAll(".lang-dropdown button");
+  langOptions.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const selectedLang = btn.getAttribute("data-lang");
+      setLanguage(selectedLang);
+      localStorage.setItem("lang", selectedLang);
+      if (langDropdown) langDropdown.classList.remove("show");
     });
   });
 
-});
-
-// =====================================================================
-// =====================================================================
-// MULTILINGUAL TOGGLE ENGINE (FIXED)
-// =====================================================================
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. Get saved language or default to English
-  let currentLang = localStorage.getItem("cb-lang") || "en";
-  
-  // 2. Function to update the page language
+  // Global Language Setter Function
   function setLanguage(lang) {
-    // Update the html tag attribute so the CSS can hide/show the right spans
+    // A. Update html tag lang attribute (toggles .en-text / .ru-text via CSS)[cite: 2, 6]
     document.documentElement.setAttribute("lang", lang);
     
-    // Update the display text on the main language button
+    // B. Update visible label on the switcher button[cite: 6]
     const langDisplay = document.querySelector(".current-lang");
     if (langDisplay) {
       langDisplay.textContent = lang === "en" ? "EN" : "RU";
     }
-  }
 
-  // Apply the language on initial load
-  setLanguage(currentLang);
-
-  // 3. Handle the dropdown visibility
-  const langBtn = document.querySelector('.lang-btn');
-  const langDropdown = document.querySelector('.lang-dropdown');
-  
-  if (langBtn && langDropdown) {
-    langBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      langDropdown.classList.toggle('show');
-    });
-
-    document.addEventListener('click', () => {
-      langDropdown.classList.remove('show');
+    // C. Dynamic Placeholder Updates (For textareas and inputs)[cite: 4]
+    document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+      const enPlaceholder = el.getAttribute('data-placeholder-en');
+      const ruPlaceholder = el.getAttribute('data-placeholder-ru');
+      el.placeholder = lang === 'en' ? enPlaceholder : ruPlaceholder;
     });
   }
 
-  // 4. Handle language switching when a dropdown button is clicked
-  document.querySelectorAll("[data-lang]").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      const selectedLang = e.target.getAttribute("data-lang");
-      
-      // Save preference and update page
-      localStorage.setItem("cb-lang", selectedLang);
-      setLanguage(selectedLang);
-      
-      // Close the dropdown
-      if (langDropdown) langDropdown.classList.remove('show');
+  // --- 3. MOBILE BURGER MENU ---
+  const burgerBtn = document.querySelector(".burger");
+  const mobileNav = document.querySelector(".mobile-nav");
+
+  if (burgerBtn && mobileNav) {
+    burgerBtn.addEventListener("click", () => {
+      burgerBtn.classList.toggle("active");
+      mobileNav.classList.toggle("active");
+      document.body.classList.toggle("no-scroll");
     });
-  });
+
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileNav.querySelectorAll("a");
+    mobileLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        burgerBtn.classList.remove("active");
+        mobileNav.classList.remove("active");
+        document.body.classList.remove("no-scroll");
+      });
+    });
+  }
+
+  // --- 4. FORM SUBMISSION HANDLING ---
+  const form = document.querySelector("[data-cb-form]");
+  const formSuccess = document.querySelector(".form-success");
+
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      
+      // Basic validation check
+      if (form.checkValidity()) {
+        // Hide form and show success state
+        form.style.display = "none";
+        if (formSuccess) {
+          formSuccess.style.display = "block";
+        }
+      } else {
+        form.classList.add("was-validated");
+      }
+    });
+  }
+
+  // --- 5. SCROLL REVEAL ANIMATIONS ---
+  const revealElements = document.querySelectorAll(".reveal");
+
+  const revealOnScroll = () => {
+    const triggerBottom = (window.innerHeight / 5) * 4;
+
+    revealElements.forEach(el => {
+      const elTop = el.getBoundingClientRect().top;
+
+      if (elTop < triggerBottom) {
+        el.classList.add("active");
+      }
+    });
+  };
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll(); // Trigger initial check on load
 });
