@@ -7,12 +7,12 @@
 <meta name="description" content="Costa Brava Clients: Coca-Cola Uzbekistan, Golden House, AKFA, Artel, Enter Engineering and more. Partners: Sika, BASF, Schneider Electric, ABB, Daikin.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght=500;600;700&family=Inter:wght=400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 
 <style>
-  /* --- CRITICAL LAYOUT & ISOLATED RESET --- */
-  .site-header {
+  /* --- COSTA BRAVA ISOLATED HEADER NAVIGATION --- */
+  .cb-site-header {
     width: 100% !important;
     background: #ffffff !important;
     border-bottom: 1px solid #eaeaea !important;
@@ -22,10 +22,10 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
     box-sizing: border-box !important;
   }
-  .site-header * {
+  .cb-site-header * {
     box-sizing: border-box !important;
   }
-  .site-header .container {
+  .cb-header-container {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
@@ -36,11 +36,11 @@
     height: 75px !important;
   }
 
-  /* --- BRAND / LOGO ALIGNMENT --- */
-  .site-header .brand {
+  /* Brand Logo Spacer & Alignment */
+  .cb-brand {
     display: flex !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 12px !important;
     text-decoration: none !important;
     font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;
@@ -49,9 +49,10 @@
     text-transform: uppercase !important;
     letter-spacing: -0.5px !important;
     line-height: 1 !important;
+    margin-right: 20px !important;
   }
-  .site-header .brand-mark {
-    background: #f97316 !important; /* Costa Brava Orange */
+  .cb-brand-mark {
+    background: #f97316 !important; /* Brand Orange */
     color: #ffffff !important;
     font-weight: 800 !important;
     font-size: 13px !important;
@@ -63,31 +64,31 @@
     line-height: 1 !important;
   }
 
-  /* --- NAVIGATION LINKS --- */
-  .site-header .nav-links {
+  /* Spaced Navigation Links */
+  .cb-nav-links {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 28px !important;
+    gap: 32px !important;
     margin: 0 !important;
     padding: 0 !important;
     list-style: none !important;
   }
-  .site-header .nav-links a {
+  .cb-nav-links a {
     text-decoration: none !important;
     font-family: 'Inter', sans-serif !important;
     font-weight: 500 !important;
-    font-size: 14.5px !important;
+    font-size: 15px !important;
     color: #475569 !important;
     transition: color 0.2s ease !important;
     position: relative !important;
     padding: 6px 0 !important;
   }
-  .site-header .nav-links a:hover,
-  .site-header .nav-links a.active {
+  .cb-nav-links a:hover,
+  .cb-nav-links a.active {
     color: #f97316 !important;
   }
-  .site-header .nav-links a.active::after {
+  .cb-nav-links a.active::after {
     content: '' !important;
     position: absolute !important;
     bottom: -4px !important;
@@ -98,20 +99,20 @@
     border-radius: 2px !important;
   }
 
-  /* --- HEADER ACTIONS --- */
-  .site-header .header-actions {
+  /* Actions Layout */
+  .cb-header-actions {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     gap: 16px !important;
   }
 
-  /* --- LANGUAGE DROP-DOWN --- */
-  .site-header .lang-switcher {
+  /* Clean Language Switcher */
+  .cb-lang-switcher {
     position: relative !important;
     display: inline-block !important;
   }
-  .site-header .lang-btn {
+  .cb-lang-btn {
     background: #f1f5f9 !important;
     border: 1px solid #e2e8f0 !important;
     color: #334155 !important;
@@ -125,10 +126,10 @@
     gap: 6px !important;
     transition: all 0.2s ease !important;
   }
-  .site-header .lang-btn:hover {
+  .cb-lang-btn:hover {
     background: #e2e8f0 !important;
   }
-  .site-header .lang-dropdown {
+  .cb-lang-dropdown {
     display: none;
     position: absolute !important;
     top: calc(100% + 6px) !important;
@@ -141,10 +142,10 @@
     z-index: 10000 !important;
     padding: 6px !important;
   }
-  .site-header .lang-dropdown.open {
+  .cb-lang-dropdown.open {
     display: block !important;
   }
-  .site-header .lang-dropdown button {
+  .cb-lang-dropdown button {
     display: block !important;
     width: 100% !important;
     padding: 8px 12px !important;
@@ -157,13 +158,13 @@
     cursor: pointer !important;
     border-radius: 6px !important;
   }
-  .site-header .lang-dropdown button:hover {
+  .cb-lang-dropdown button:hover {
     background: #f1f5f9 !important;
     color: #f97316 !important;
   }
 
-  /* --- GET QUOTE BUTTON --- */
-  .site-header .btn-primary {
+  /* Solid CTA Button */
+  .cb-btn-primary {
     background: #f97316 !important;
     color: #ffffff !important;
     font-family: 'Inter', sans-serif !important;
@@ -182,13 +183,13 @@
     cursor: pointer !important;
     line-height: 1 !important;
   }
-  .site-header .btn-primary:hover {
+  .cb-btn-primary:hover {
     background: #ea580c !important;
     box-shadow: 0 4px 16px rgba(249, 115, 22, 0.35) !important;
   }
 
-  /* --- MOBILE NAVIGATION PANEL --- */
-  .site-header .burger {
+  /* Burger Menu Button */
+  .cb-burger {
     display: none !important;
     background: none !important;
     border: none !important;
@@ -197,7 +198,7 @@
     flex-direction: column !important;
     gap: 5px !important;
   }
-  .site-header .burger span {
+  .cb-burger span {
     display: block !important;
     width: 22px !important;
     height: 2px !important;
@@ -205,11 +206,13 @@
     border-radius: 2px !important;
     transition: all 0.2s ease !important;
   }
-  .mobile-nav {
+
+  /* --- MOBILE NAVIGATION DRAWER --- */
+  .cb-mobile-nav {
     display: none !important;
   }
 
-  /* --- BILINGUAL TEXT STATE MANAGEMENT --- */
+  /* Language visibility state controllers */
   [data-lang-state="en"] .ru-text { display: none !important; }
   [data-lang-state="ru"] .en-text { display: none !important; }
 
@@ -268,7 +271,7 @@
     line-height: 1.2 !important;
   }
 
-  /* --- SECTIONS & HEADINGS --- */
+  /* --- CLIENTS SECTION HEADINGS --- */
   .cb-section-title {
     text-align: center !important;
     margin-bottom: 50px !important;
@@ -291,7 +294,7 @@
     margin: 0 !important;
   }
 
-  /* --- UNIFORM LOGO GRID --- */
+  /* --- LOGO GRID: REMOVED GRAYSCALE FILTER --- */
   .client-grid {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
@@ -319,16 +322,16 @@
     max-width: 100% !important;
     max-height: 100% !important;
     object-fit: contain !important;
-    filter: grayscale(100%) !important;
-    opacity: 0.75 !important;
+    /* FULL ORIGINAL BRAND COLORS LOADED INSTANTLY */
+    filter: none !important;
+    opacity: 1 !important;
     transition: all 0.3s ease !important;
   }
   .client-card:hover img {
-    filter: grayscale(0%) !important;
-    opacity: 1 !important;
+    transform: scale(1.05) !important;
   }
 
-  /* Structural fixes for custom scaling elements */
+  /* Custom scaling adjustments for layout consistency */
   .client-card img.scale-up { transform: scale(1.15) !important; }
   .client-card:hover img.scale-up { transform: scale(1.22) !important; }
   .client-card img.scale-up-more { transform: scale(1.3) !important; }
@@ -336,15 +339,15 @@
 
   /* --- RESPONSIVE MEDIA QUERIES --- */
   @media (max-width: 992px) {
-    .site-header .nav-links,
-    .site-header .header-actions .btn-primary,
-    .site-header .header-actions .lang-switcher {
+    .cb-site-header .cb-nav-links,
+    .cb-site-header .cb-header-actions .cb-btn-primary,
+    .cb-site-header .cb-header-actions .cb-lang-switcher {
       display: none !important;
     }
-    .site-header .burger {
+    .cb-site-header .cb-burger {
       display: flex !important;
     }
-    .mobile-nav {
+    .cb-mobile-nav {
       position: fixed !important;
       top: 75px !important;
       left: 0 !important;
@@ -359,18 +362,18 @@
       box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05) !important;
       display: none !important;
     }
-    .mobile-nav.active {
+    .cb-mobile-nav.active {
       display: flex !important;
     }
-    .mobile-nav a {
+    .cb-mobile-nav a {
       font-family: 'Poppins', sans-serif !important;
       font-size: 18px !important;
       font-weight: 600 !important;
       color: #1e293b !important;
       text-decoration: none !important;
     }
-    .mobile-nav a:hover,
-    .mobile-nav a.active {
+    .cb-mobile-nav a:hover,
+    .cb-mobile-nav a.active {
       color: #f97316 !important;
     }
     .client-grid {
@@ -391,7 +394,7 @@
     .client-grid {
       grid-template-columns: 1fr !important;
     }
-    .site-header .container {
+    .cb-site-header .cb-header-container {
       padding: 0 16px !important;
     }
   }
@@ -399,36 +402,36 @@
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container">
-    <a href="index.html" class="brand"><span class="brand-mark">CB</span>COSTA BRAVA</a>
-    <nav class="nav-links">
+<header class="cb-site-header">
+  <div class="cb-header-container">
+    <a href="index.html" class="cb-brand"><span class="cb-brand-mark">CB</span>COSTA BRAVA</a>
+    <nav class="cb-nav-links">
       <a href="index.html"><span class="en-text">About</span><span class="ru-text">О компании</span></a>
       <a href="services.html"><span class="en-text">Services</span><span class="ru-text">Услуги</span></a>
       <a href="clients.html" class="active"><span class="en-text">Clients</span><span class="ru-text">Клиенты</span></a>
       <a href="careers.html"><span class="en-text">Careers</span><span class="ru-text">Карьера</span></a>
       <a href="contact.html"><span class="en-text">Contact</span><span class="ru-text">Контакты</span></a>
     </nav>
-    <div class="header-actions">
-      <div class="lang-switcher">
-        <button class="lang-btn" aria-label="Switch language">
+    <div class="cb-header-actions">
+      <div class="cb-lang-switcher">
+        <button class="cb-lang-btn" aria-label="Switch language">
           <span class="current-lang">EN</span> <span style="font-size: 9px;">▼</span>
         </button>
-        <div class="lang-dropdown">
+        <div class="cb-lang-dropdown">
           <button data-lang="en">English</button>
           <button data-lang="ru">Русский</button>
         </div>
       </div>
-      <a href="contact.html" class="btn btn-primary">
+      <a href="contact.html" class="cb-btn-primary">
         <span class="en-text">Get Quote</span><span class="ru-text">КП</span>
       </a>
-      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="cb-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <!-- Mobile Navigation Drawer -->
-<div class="mobile-nav">
+<div class="cb-mobile-nav">
   <a href="index.html"><span class="en-text">About</span><span class="ru-text">О компании</span></a>
   <a href="services.html"><span class="en-text">Services</span><span class="ru-text">Услуги</span></a>
   <a href="clients.html" class="active"><span class="en-text">Clients</span><span class="ru-text">Клиенты</span></a>
@@ -463,7 +466,7 @@
       <h2><span class="en-text">Our Customers</span><span class="ru-text">Наши заказчики</span></h2>
     </div>
     
-    <!-- 8 Uploaded Client Images -->
+    <!-- 8 Original Color Client Images Grid -->
     <div class="client-grid">
       <!-- Coca-Cola -->
       <div class="client-card">
@@ -527,9 +530,9 @@
 </footer>
 
 <script>
-  // Language Switcher Toggle Functionality
-  const langBtn = document.querySelector('.lang-btn');
-  const langDropdown = document.querySelector('.lang-dropdown');
+  // Language Switcher Dropdown Open/Close
+  const langBtn = document.querySelector('.cb-lang-btn');
+  const langDropdown = document.querySelector('.cb-lang-dropdown');
   const currentLangSpan = document.querySelector('.current-lang');
 
   langBtn.addEventListener('click', (e) => {
@@ -541,8 +544,8 @@
     langDropdown.classList.remove('open');
   });
 
-  // Handle translation switcher clicks
-  const langButtons = document.querySelectorAll('.lang-dropdown button');
+  // Handle Switch language selection state
+  const langButtons = document.querySelectorAll('.cb-lang-dropdown button');
   langButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const selectedLang = btn.getAttribute('data-lang');
@@ -551,9 +554,9 @@
     });
   });
 
-  // Mobile Menu Toggle Functionality
-  const burgerBtn = document.querySelector('.burger');
-  const mobileNav = document.querySelector('.mobile-nav');
+  // Mobile Navigation toggle handler
+  const burgerBtn = document.querySelector('.cb-burger');
+  const mobileNav = document.querySelector('.cb-mobile-nav');
 
   burgerBtn.addEventListener('click', () => {
     mobileNav.classList.toggle('active');
