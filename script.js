@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- 1. THEME TOGGLE (LIGHT / DARK) ---
+  
+  // ==========================================
+  // 1. THEME TOGGLE (LIGHT / DARK)
+  // ==========================================
   const themeToggleBtn = document.querySelector(".theme-toggle");
-  const currentTheme = localStorage.getItem("theme") || "light";
+  const savedTheme = localStorage.getItem("theme") || "light";
 
-  // Set initial theme
-  document.documentElement.setAttribute("data-theme", currentTheme);
+  document.documentElement.setAttribute("data-theme", savedTheme);
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener("click", () => {
@@ -16,50 +18,49 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 2. LANGUAGE SWITCHER LOGIC ---
+  // ==========================================
+  // 2. LANGUAGE SWITCHER (FIXED & DYNAMIC)
+  // ==========================================
   const langBtn = document.querySelector(".lang-btn");
   const langDropdown = document.querySelector(".lang-dropdown");
-  const currentLang = localStorage.getItem("lang") || "en";
+  const savedLang = localStorage.getItem("lang") || "en";
 
-  // Set initial language on load
-  setLanguage(currentLang);
+  setLanguage(savedLang);
 
-  // Toggle Language Dropdown menu
   if (langBtn && langDropdown) {
     langBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       langDropdown.classList.toggle("show");
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener("click", () => {
       langDropdown.classList.remove("show");
     });
   }
 
-  // Handle language selection
-  const langOptions = document.querySelectorAll(".lang-dropdown button");
+  const langOptions = document.querySelectorAll(".lang-dropdown button, [data-lang]");
   langOptions.forEach(btn => {
     btn.addEventListener("click", () => {
       const selectedLang = btn.getAttribute("data-lang");
-      setLanguage(selectedLang);
-      localStorage.setItem("lang", selectedLang);
-      if (langDropdown) langDropdown.classList.remove("show");
+      if (selectedLang) {
+        setLanguage(selectedLang);
+        localStorage.setItem("lang", selectedLang);
+        if (langDropdown) langDropdown.classList.remove("show");
+      }
     });
   });
 
-  // Global Language Setter Function
   function setLanguage(lang) {
-    // A. Update html tag lang attribute (toggles .en-text / .ru-text via CSS)[cite: 2, 6]
+    // Switch language classes via CSS toggle[cite: 2, 6]
     document.documentElement.setAttribute("lang", lang);
     
-    // B. Update visible label on the switcher button[cite: 6]
+    // Fix current lang display badge[cite: 6]
     const langDisplay = document.querySelector(".current-lang");
     if (langDisplay) {
       langDisplay.textContent = lang === "en" ? "EN" : "RU";
     }
 
-    // C. Dynamic Placeholder Updates (For textareas and inputs)[cite: 4]
+    // Dynamic placeholder replacement loop[cite: 4]
     document.querySelectorAll('[data-placeholder-en]').forEach(el => {
       const enPlaceholder = el.getAttribute('data-placeholder-en');
       const ruPlaceholder = el.getAttribute('data-placeholder-ru');
@@ -67,7 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 3. MOBILE BURGER MENU ---
+  // ==========================================
+  // 3. MOBILE BURGER NAVIGATION MENU
+  // ==========================================
   const burgerBtn = document.querySelector(".burger");
   const mobileNav = document.querySelector(".mobile-nav");
 
@@ -78,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.toggle("no-scroll");
     });
 
-    // Close mobile menu when clicking on a link
     const mobileLinks = mobileNav.querySelectorAll("a");
     mobileLinks.forEach(link => {
       link.addEventListener("click", () => {
@@ -89,42 +91,183 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 4. FORM SUBMISSION HANDLING ---
-  const form = document.querySelector("[data-cb-form]");
-  const formSuccess = document.querySelector(".form-success");
+  // ==========================================
+  // 4. ACTIVE NAVIGATION LINK HIGH-LIGHTER
+  // ==========================================
+  const currentPath = window.location.pathname.split("/").pop() || "index.html";
+  const navLinks = document.querySelectorAll(".nav-links a, .mobile-nav a");
+  
+  navLinks.forEach(link => {
+    const linkPath = link.getAttribute("href");
+    if (linkPath === currentPath) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
 
-  if (form) {
-    form.addEventListener("submit", (e) => {
+  // ==========================================
+  // 5. TELEGRAM API FORM SUBMISSION & VALIDATION
+  // ==========================================
+  const forms = document.querySelectorAll("[data-cb-form], form");
+
+  forms.forEach(form => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       
-      // Basic validation check
-      if (form.checkValidity()) {
-        // Hide form and show success state
-        form.style.display = "none";
-        if (formSuccess) {
-          formSuccess.style.display = "block";
-        }
-      } else {
+      const successContainer = form.nextElementSibling && form.nextElementSibling.classList.contains("form-success") 
+        ? form.nextElementSibling 
+        : document.querySelector(".form-success");
+
+      if (!form.checkValidity()) {
         form.classList.add("was-validated");
+        return;
+      }
+
+      // Collect form payload data safely
+      const formData = new FormData(form);
+      let messageText = `📬 *New Form Submission (Costa Brava Website)*\n\n`;
+      
+      formData.forEach((value, key) => {
+        if(value.trim() !== "") {
+          messageText += `🔹 *${key.charAt(0).toUpperCase() + key.slice(1)}:* ${value}\n`;
+        }
+      });
+
+      // Insert your Telegram credentials here
+      const BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN";
+      const CHAT_ID = "YOUR_TELEGRAM_CHAT_ID";
+      const TELEGRAM_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+      try {
+        const response = await fetch(TELEGRAM_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: messageText,
+            parse_mode: "Markdown"
+          })
+        });
+
+        if (response.ok) {
+          form.reset();
+          form.classList.remove("was-validated");
+          form.style.display = "none";
+          if (successContainer) {
+            successContainer.style.display = "block";
+          }
+        } else {
+          alert("Submission error. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Network error. Please try again later.");
       }
     });
-  }
+  });
 
-  // --- 5. SCROLL REVEAL ANIMATIONS ---
-  const revealElements = document.querySelectorAll(".reveal");
-
-  const revealOnScroll = () => {
-    const triggerBottom = (window.innerHeight / 5) * 4;
-
-    revealElements.forEach(el => {
-      const elTop = el.getBoundingClientRect().top;
-
-      if (elTop < triggerBottom) {
-        el.classList.add("active");
+  // ==========================================
+  // 6. INPUT TELEPHONE MASK
+  // ==========================================
+  const phoneInputs = document.querySelectorAll('input[type="tel"]');
+  phoneInputs.forEach(input => {
+    input.addEventListener("input", (e) => {
+      let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})/);
+      if (!x[2]) {
+        e.target.value = x[1] ? `+${x[1]}` : '';
+      } else {
+        e.target.value = `+${x[1]} (${x[2]}) ` + (x[3] ? `${x[3]}` : '') + (x[4] ? `-${x[4]}` : '') + (x[5] ? `-${x[5]}` : '');
       }
     });
+  });
+
+  // ==========================================
+  // 7. ANIMATED STATS NUMERICAL COUNTERS
+  // ==========================================
+  const counters = document.querySelectorAll(".counter-num, .stat-number");
+  
+  const startCounter = (counter) => {
+    const target = +counter.getAttribute("data-target") || 100;
+    const speed = 200;
+    const increment = target / speed;
+
+    const updateCount = () => {
+      const count = +counter.innerText.replace('+', '');
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment) + "+";
+        setTimeout(updateCount, 1);
+      } else {
+        counter.innerText = target + "+";
+      }
+    };
+    updateCount();
   };
 
-  window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // Trigger initial check on load
+  // ==========================================
+  // 8. SCROLL REVEAL ANIMATIONS & OBSERVER
+  // ==========================================
+  const revealElements = document.querySelectorAll(".reveal, .reveal-stagger");
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        
+        // If this section has counters inside, trigger them
+        const elementCounters = entry.target.querySelectorAll(".counter-num, .stat-number");
+        elementCounters.forEach(counter => startCounter(counter));
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // ==========================================
+  // 9. MODAL WINDOW POPUPS (IF ANY)
+  // ==========================================
+  const modalTriggers = document.querySelectorAll("[data-modal-open]");
+  const modalCloses = document.querySelectorAll("[data-modal-close]");
+
+  modalTriggers.forEach(trigger => {
+    trigger.addEventListener("click", () => {
+      const modalId = trigger.getAttribute("data-modal-open");
+      const targetModal = document.getElementById(modalId);
+      if (targetModal) {
+        targetModal.classList.add("modal-active");
+        document.body.classList.add("no-scroll");
+      }
+    });
+  });
+
+  modalCloses.forEach(close => {
+    close.addEventListener("click", () => {
+      const openModal = document.querySelector(".modal-active");
+      if (openModal) {
+        openModal.classList.remove("modal-active");
+        document.body.classList.remove("no-scroll");
+      }
+    });
+  });
+
+  // ==========================================
+  // 10. SMOOTH SCROLL ANCHORS
+  // ==========================================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      if (targetId === "#") return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        targetElement.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    });
+  });
+
 });
