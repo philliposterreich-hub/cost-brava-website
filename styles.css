@@ -1,4 +1,4 @@
-[7/16/2026 1:56 PM] Suleyman: /* ==========================================================================
+/* ==========================================================================
    styles.css - COSTA BRAVA SHAPING THE FUTURE OF CONSTRUCTION & ENGINEERING
    ========================================================================== */
 
@@ -199,7 +199,7 @@ body {
   background: var(--bg);
   color: var(--orange);
 }
-[7/16/2026 1:56 PM] Suleyman: /* ==========================================
+/* ==========================================
    HERO SECTIONS
    ========================================== */
 .page-hero {
@@ -415,7 +415,7 @@ body {
 .project-info {
   padding: 25px;
 }
-[7/16/2026 1:56 PM] Suleyman: .project-tag {
+ .project-tag {
   display: inline-block;
   background: rgba(255, 122, 0, 0.1);
   color: var(--orange);
@@ -652,7 +652,7 @@ select.form-control {
   color: var(--text-muted);
   text-transform: uppercase;
 }
-[7/16/2026 1:56 PM] Suleyman: .contact-info-text p {
+.contact-info-text p {
   font-size: 16px;
   color: var(--text);
   font-weight: 500;
