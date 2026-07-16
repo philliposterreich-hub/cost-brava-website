@@ -1,0 +1,101 @@
+/* ==========================================================================
+   COSTA BRAVA — Animations
+   Page-load sequence for the hero, plus small, purposeful
+   micro-interactions. Scroll-reveal keyframes live in style.css
+   alongside the [data-reveal] utility they animate.
+   ========================================================================== */
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hero load sequence: eyebrow, title, copy, cta and art stagger in on
+   first paint so the homepage feels intentional rather than static. */
+.hero__eyebrow {
+  animation: fade-slide-up 0.7s var(--ease-out) both;
+  animation-delay: 0.05s;
+}
+
+.hero__title {
+  animation: fade-slide-up 0.8s var(--ease-out) both;
+  animation-delay: 0.15s;
+}
+
+.hero__lede {
+  animation: fade-slide-up 0.8s var(--ease-out) both;
+  animation-delay: 0.28s;
+}
+
+.hero__cta {
+  animation: fade-slide-up 0.8s var(--ease-out) both;
+  animation-delay: 0.4s;
+}
+
+.hero__art {
+  animation: scale-in 0.9s var(--ease-out) both;
+  animation-delay: 0.3s;
+}
+
+.site-header {
+  animation: fade-in 0.6s ease both;
+}
+
+/* Card / list stagger — nth-child delay so grids feel choreographed
+   the moment [data-reveal] flips to .is-visible via IntersectionObserver */
+.card-grid .card:nth-child(1) { transition-delay: 0.02s; }
+.card-grid .card:nth-child(2) { transition-delay: 0.08s; }
+.card-grid .card:nth-child(3) { transition-delay: 0.14s; }
+.card-grid .card:nth-child(4) { transition-delay: 0.2s; }
+.card-grid .card:nth-child(5) { transition-delay: 0.26s; }
+.card-grid .card:nth-child(6) { transition-delay: 0.32s; }
+
+.stat-band__grid .stat:nth-child(1) { transition-delay: 0.02s; }
+.stat-band__grid .stat:nth-child(2) { transition-delay: 0.1s; }
+.stat-band__grid .stat:nth-child(3) { transition-delay: 0.18s; }
+.stat-band__grid .stat:nth-child(4) { transition-delay: 0.26s; }
+
+/* Subtle continuous ambient motion on the CB logo mark, evoking a
+   steady, always-on operation — restrained, not distracting. */
+@keyframes mark-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 145, 77, 0.45); }
+  50% { box-shadow: 0 0 0 6px rgba(255, 145, 77, 0); }
+}
+
+.logo__mark {
+  animation: mark-pulse 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__eyebrow,
+  .hero__title,
+  .hero__lede,
+  .hero__cta,
+  .hero__art,
+  .site-header,
+  .logo__mark {
+    animation: none !important;
+  }
+}
