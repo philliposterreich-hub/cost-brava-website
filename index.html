@@ -3,186 +3,193 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us — Costa Brava</title>
+  <title>Costa Brava — Engineering & Construction</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script>
-    /* Prevent Light/Dark theme flash and localization page layout shift */
-    (function() {
-      const savedTheme = localStorage.getItem('preferred-theme') || 'light';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      const savedLang = localStorage.getItem('preferred-language') || 'en';
-      document.documentElement.setAttribute('lang', savedLang);
-    })();
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container header-container">
-    <a href="index.html" class="brand"><span class="brand-mark">CB</span>COSTA BRAVA</a>
-    <nav class="nav-links">
-      <a href="index.html" class="active"><span class="en-text">About</span><span class="ru-text">О компании</span></a>
-      <a href="services.html"><span class="en-text">Services</span><span class="ru-text">Услуги</span></a>
-      <a href="clients.html"><span class="en-text">Clients</span><span class="ru-text">Клиенты</span></a>
-      <a href="contact.html"><span class="en-text">Contact</span><span class="ru-text">Контакты</span></a>
-    </nav>
-    <div class="header-actions">
-      <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">
-        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      </button>
+  <!-- Header Section -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">CB</span>COSTA BRAVA
+      </a>
+      
+      <nav class="nav-links">
+        <a href="index.html" class="active">
+          <span class="en-text">About</span>
+          <span class="ru-text">О компании</span>
+        </a>
+        <a href="services.html">
+          <span class="en-text">Services</span>
+          <span class="ru-text">Услуги</span>
+        </a>
+        <a href="clients.html">
+          <span class="en-text">Clients</span>
+          <span class="ru-text">Клиенты</span>
+        </a>
+        <a href="contact.html">
+          <span class="en-text">Contact</span>
+          <span class="ru-text">Контакты</span>
+        </a>
+      </nav>
+
+      <!-- Language Switcher -->
       <div class="lang-switcher">
-        <button class="lang-btn" aria-label="Switch language">
-          <span class="current-lang">EN</span> ▼
-        </button>
-        <div class="lang-dropdown">
-          <button data-lang="en">English</button>
-          <button data-lang="ru">Русский</button>
+        <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">EN</button>
+        <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn">RU</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="page-hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <span class="hero-subtitle">
+        <span class="en-text">TRUSTED ENGINEERING PARTNER</span>
+        <span class="ru-text">НАДЕЖНЫЙ ИНЖЕНЕРНЫЙ ПАРТНЕР</span>
+      </span>
+      <h1>
+        <span class="en-text">Engineering Culture Built on Discipline</span>
+        <span class="ru-text">Инженерная культура, построенная на дисциплине</span>
+      </h1>
+      <p class="hero-description">
+        <span class="en-text">Delivering world-class industrial, civil, and infrastructural solutions across Uzbekistan.</span>
+        <span class="ru-text">Предоставление решений мирового уровня в области промышленного, гражданского и инфраструктурного строительства в Узбекистане.</span>
+      </p>
+      <a href="contact.html" class="cta-button">
+        <span class="en-text">Get a Quote</span>
+        <span class="ru-text">Получить коммерческое</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Professional Image Showcase Section -->
+  <section class="portfolio-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>
+          <span class="en-text">Our Key Projects</span>
+          <span class="ru-text">Наши ключевые проекты</span>
+        </h2>
+        <div class="title-line"></div>
+      </div>
+      
+      <div class="project-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Industrial Facility">
+          </div>
+          <div class="project-info">
+            <h3>
+              <span class="en-text">Industrial Engineering</span>
+              <span class="ru-text">Промышленный инжиниринг</span>
+            </h3>
+            <p>
+              <span class="en-text">High-precision manufacturing plants and structural frameworks.</span>
+              <span class="ru-text">Высокоточные производственные мощности и металлоконструкции.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Commercial Complex">
+          </div>
+          <div class="project-info">
+            <h3>
+              <span class="en-text">Modern Architecture</span>
+              <span class="ru-text">Современная архитектура</span>
+            </h3>
+            <p>
+              <span class="en-text">Innovative commercial complexes and high-tech corporate hubs.</span>
+              <span class="ru-text">Инновационные бизнес-комплексы и высокотехнологичные центры.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="Infrastructure Development">
+          </div>
+          <div class="project-info">
+            <h3>
+              <span class="en-text">Infrastructure Solutions</span>
+              <span class="ru-text">Инфраструктурные решения</span>
+            </h3>
+            <p>
+              <span class="en-text">Large scale foundations, civil engineering, and urban development.</span>
+              <span class="ru-text">Масштабные фундаменты, гражданское строительство и городская инфраструктура.</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </section>
 
-<section class="page-hero">
-  <div class="container">
-    <h1>
-      <span class="en-text">About Costa Brava</span>
-      <span class="ru-text">О компании Costa Brava</span>
-    </h1>
-    <p>
-      <span class="en-text">Shaping structural infrastructure and premium MEP standards across Uzbekistan.</span>
-      <span class="ru-text">Формирование надежной инфраструктуры и систем MEP премиум-класса по всему Узбекистану.</span>
-    </p>
-  </div>
-</section>
-
-<main class="container">
-  <div class="about-section">
-    <div class="about-text">
-      <h2>
-        <span class="en-text">Engineering Excellence & Reliability</span>
-        <span class="ru-text">Профессионализм в инжиниринге и надежность</span>
-      </h2>
-      <p>
-        <span class="en-text">Costa Brava specializes in full-cycle construction, advanced MEP engineering systems, structural layout, HVAC, low-current system designs, and maintenance support. We align ourselves with both local state regulations and standard international quality principles.</span>
-        <span class="ru-text">Costa Brava специализируется на строительстве полного цикла, передовых инженерных системах MEP, монтаже каркасных конструкций, ОВК, слаботочных сетях и техническом обслуживании. Мы работаем в соответствии с локальными нормами и международными стандартами качества.</span>
-      </p>
-      <p>
-        <span class="en-text">From comprehensive fit-outs to complex industrial facility restorations, our engineers provide modern solutions tailored to dynamic modern timelines.</span>
-        <span class="ru-text">От комплексной финишной отделки до восстановления сложных промышленных объектов — наши инженеры предлагают современные решения, соответствующие жестким графикам реализации проектов.</span>
-      </p>
-    </div>
-    <div class="about-media">
-      <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" alt="Costa Brava Engineering">
-    </div>
-  </div>
-
-  <div class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <h3>50+</h3>
-        <p><span class="en-text">Completed Projects</span><span class="ru-text">Выполненных проектов</span></p>
-      </div>
-      <div class="stat-item">
-        <h3>10+</h3>
-        <p><span class="en-text">Years on Market</span><span class="ru-text">Лет на рынке</span></p>
-      </div>
-      <div class="stat-item">
-        <h3>200+</h3>
-        <p><span class="en-text">Specialists & Engineers</span><span class="ru-text">Специалистов и инженеров</span></p>
-      </div>
-      <div class="stat-item">
-        <h3>100%</h3>
-        <p><span class="en-text">Satisfaction Rate</span><span class="ru-text">Уровень удовлетворенности</span></p>
+  <!-- Seamless Moving Logos Section -->
+  <section class="clients-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>
+          <span class="en-text">Our Customers</span>
+          <span class="ru-text">Наши клиенты</span>
+        </h2>
+        <div class="title-line"></div>
       </div>
     </div>
-  </div>
 
-  <h2 class="section-title">
-    <span class="en-text">Our Core Corporate Values</span>
-    <span class="ru-text">Наши корпоративные ценности</span>
-  </h2>
-  <div class="grid-3">
-    <div class="card">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-      </div>
-      <h3><span class="en-text">Quality Management</span><span class="ru-text">Контроль качества</span></h3>
-      <p><span class="en-text">Strict inspection at each building phase ensuring structural longevity and absolute structural integrity.</span><span class="ru-text">Строгий контроль на каждом этапе строительства, гарантирующий долговечность и абсолютную надежность конструкций.</span></p>
-    </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-      </div>
-      <h3><span class="en-text">High Safety Focus</span><span class="ru-text">Безопасность труда</span></h3>
-      <p><span class="en-text">Uncompromising implementation of international safety rules for our engineers on site.</span><span class="ru-text">Бескомпромиссное соблюдение международных правил техники безопасности для всех специалистов на объектах.</span></p>
-    </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-      </div>
-      <h3><span class="en-text">Innovation Strategy</span><span class="ru-text">Инновационные решения</span></h3>
-      <p><span class="en-text">Utilization of BIM design modeling and high-tech energy-conserving materials.</span><span class="ru-text">Применение технологий BIM-проектирования и энергоэффективных строительных материалов.</span></p>
-    </div>
-  </div>
-</main>
-
-<div class="whatsapp-widget" onclick="window.open('https://wa.me/998996173555')">
-  <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.488 1.449 5.412 1.451 5.428 0 9.845-4.394 9.848-9.793.001-2.615-1.011-5.074-2.852-6.918C17.207 2.052 14.75 1.037 12.14 1.037c-5.433 0-9.85 4.394-9.853 9.792-.001 1.986.517 3.93 1.5 5.64l-.984 3.593 3.684-.966zm10.743-7.416c-.29-.145-1.716-.848-1.98-.942-.266-.096-.459-.145-.653.145-.193.29-.748.942-.917 1.135-.169.193-.338.217-.627.072-2.316-1.161-3.81-2.004-5.328-4.606-.4-.686.4-.637 1.144-2.128.116-.217.058-.41-.029-.555-.087-.145-.748-1.803-1.025-2.467-.27-.649-.546-.56-.748-.57-.193-.01-.41-.012-.627-.012-.217 0-.57.081-.869.41-.299.329-1.143 1.116-1.143 2.72s1.167 3.153 1.328 3.371c.162.217 2.296 3.507 5.562 4.918 2.37.1 3.256-.05 4.05-.124.814-.076 1.716-.701 1.958-1.378.24-.677.24-1.258.17-1.378-.073-.122-.267-.195-.556-.341z"/></svg>
-</div>
-
-<button class="back-to-top" aria-label="Back to top">
-  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="brand"><span class="brand-mark">CB</span>COSTA BRAVA</a>
-        <p style="margin-top:15px; font-size:14px;">
-          <span class="en-text">Full-cycle construction and engineering systems in Uzbekistan.</span>
-          <span class="ru-text">Строительство и инженерные системы полного цикла в Узбекистане.</span>
-        </p>
-      </div>
-      <div class="footer-col">
-        <h4><span class="en-text">Menu</span><span class="ru-text">Меню</span></h4>
-        <ul>
-          <li><a href="index.html"><span class="en-text">About</span><span class="ru-text">О компании</span></a></li>
-          <li><a href="services.html"><span class="en-text">Services</span><span class="ru-text">Услуги</span></a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4><span class="en-text">Services</span><span class="ru-text">Услуги</span></h4>
-        <ul>
-          <li><a href="services.html"><span class="en-text">Civil Construction</span><span class="ru-text">Гражданское строительство</span></a></li>
-          <li><a href="services.html"><span class="en-text">HVAC Systems</span><span class="ru-text">Системы ОВК</span></a></li>
-          <li><a href="services.html"><span class="en-text">Electrical Works</span><span class="ru-text">Электромонтажные работы</span></a></li>
-        </ul>
+    <div class="logo-marquee">
+      <div class="logo-track">
+        <!-- Group 1 -->
+        <div class="logo-group">
+          <div class="logo-card">Coca-Cola</div>
+          <div class="logo-card">Golden House</div>
+          <div class="logo-card">K3</div>
+          <div class="logo-card">Akfa</div>
+          <div class="logo-card">Artel</div>
+          <div class="logo-card">Murad Buildings</div>
+          <div class="logo-card">Enter Engineering</div>
+          <div class="logo-card">UzAuto</div>
+        </div>
+        <!-- Group 2 (Exact duplicate for a seamless loop) -->
+        <div class="logo-group" aria-hidden="true">
+          <div class="logo-card">Coca-Cola</div>
+          <div class="logo-card">Golden House</div>
+          <div class="logo-card">K3</div>
+          <div class="logo-card">Akfa</div>
+          <div class="logo-card">Artel</div>
+          <div class="logo-card">Murad Buildings</div>
+          <div class="logo-card">Enter Engineering</div>
+          <div class="logo-card">UzAuto</div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span><span class="en-text">© 2026 Costa Brava. All rights reserved.</span><span class="ru-text">© 2026 Costa Brava. Все права защищены.</span></span>
-    </div>
-  </div>
-</footer>
+  </section>
 
-<script src="script.js"></script>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Costa Brava. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Language Switcher Script -->
+  <script>
+    function setLanguage(lang) {
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('btn-' + lang).classList.add('active');
+    }
+    // Set default language on load
+    document.addEventListener('DOMContentLoaded', () => setLanguage('en'));
+  </script>
 </body>
 </html>
